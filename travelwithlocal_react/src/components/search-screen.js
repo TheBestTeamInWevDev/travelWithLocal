@@ -4,23 +4,30 @@ import poiService from "../services/poi-service"
 
 const SearchScreen = () => {
     const {location} = useParams()
+    const [searchLocation, setSearchLocation] = useState(location)
     const [results, setResults] = useState({results:[]})
     useEffect(() => {
-        findPOIByLocation()
+        setSearchLocation(location)
+        findPOIByLocation(location)
     }, [])
-    const findPOIByLocation = () => {
+    const findPOIByLocation = (location) => {
         poiService.findPOIByLocation(location)
             .then((results) => {
                 setResults(results)
-                console.log(results);
+                // console.log(results);
             })
     }
 
     return(
         <div>
             <h2>Search Screen</h2>
-            <input value={location} className="form-control"/>
-            <button className="btn btn-primary">
+            <input onChange={(event => {
+                setSearchLocation(event.target.value)
+            })}
+                   value={searchLocation} className="form-control"/>
+            <button onClick={() => {
+                findPOIByLocation(searchLocation)
+            }} className="btn btn-primary">
                 Search
             </button>
             <ul className="list-group">
@@ -29,7 +36,8 @@ const SearchScreen = () => {
                     results.results.map((poi) =>{
                         return(
                             <li className="list-group-item">
-                                <Link to={`/details/Boston`}>
+                                {/*poi.place_id does not work*/}
+                                <Link to={`/details/${poi.reference}`}>
                                     {poi.name}
                                 </Link>
                             </li>
