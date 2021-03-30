@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import {Link, useParams} from "react-router-dom"
+import {Link, useParams, useHistory} from "react-router-dom"
 import poiService from "../services/poi-service"
 
 const SearchScreen = () => {
+    const history = useHistory()
     const {location} = useParams()
     const [searchLocation, setSearchLocation] = useState(location)
     const [results, setResults] = useState({results:[]})
@@ -11,20 +12,22 @@ const SearchScreen = () => {
         findPOIByLocation(location)
     }, [])
     const findPOIByLocation = (location) => {
+        // history.push(location)
+        // history.push(`/search/${searchTitle}`)
         poiService.findPOIByLocation(location)
             .then((results) => {
                 setResults(results)
-                // console.log(results);
             })
     }
 
     return(
         <div>
             <h2>Search Screen</h2>
-            <input onChange={(event => {
-                setSearchLocation(event.target.value)
-            })}
-                   value={searchLocation} className="form-control"/>
+            <input value={searchLocation}
+                   onChange={(event) => {
+                        setSearchLocation(event.target.value)
+                    }}
+                    className="form-control"/>
             <button onClick={() => {
                 findPOIByLocation(searchLocation)
             }} className="btn btn-primary">
