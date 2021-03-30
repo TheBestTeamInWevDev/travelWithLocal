@@ -37,7 +37,10 @@ const SearchScreen = () => {
                         return(
                             <li className="list-group-item">
                                 {/*poi.place_id does not work*/}
+                                {JSON.stringify(poi.photos)}
                                 <Link to={`/details/${poi.reference}`}>
+                                    {/*/${poi.photos[0].photo_reference}*/}
+                                    {/*.map((photo) => {return(photo.photo_reference)})*/}
                                     {poi.name}
                                 </Link>
                             </li>
