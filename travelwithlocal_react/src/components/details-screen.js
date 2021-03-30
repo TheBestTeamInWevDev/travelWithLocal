@@ -5,7 +5,7 @@ const proxyurl = "https://blooming-retreat-25143.herokuapp.com/";
 
 const DetailsScreen = () => {
     console.log("This is detail screen")
-    const {location, poiID} = useParams()
+    const {location, poiID, photoReference} = useParams()
     console.log(location)
     console.log(poiID)
     const history = useHistory()
@@ -40,10 +40,12 @@ const DetailsScreen = () => {
             </button>
             <h2>{location}</h2>
             <p>{JSON.stringify(place.result)}</p>
-            {/*<img src={`${proxyurl}https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA`} />*/}
+            <h2>{photoReference}</h2>
+            <img width={"300"} height={"300"}  src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA`} />
             {/*<img src="https://lh3.googleusercontent.com/p/AF1QipMA1IC6hZ0e5AsIIbs2_SCbV1O-3f6JO2KdM-fO=s1600-w400"/>*/}
-            <p>{place.result.formatted_address}</p>
-            {/*<p>{place.photos}</p>*/}
+            {/*<p>{place.result.formatted_address}</p>*/}
+            {/*<img src={photo} width={"300"} height={"300"} />*/}
+
 
         </div>
 
