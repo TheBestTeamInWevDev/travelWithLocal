@@ -13,7 +13,7 @@ const SearchScreen = () => {
     }, [])
     const findPOIByLocation = (location) => {
         // history.push(location)
-        // history.push(`/search/${searchTitle}`)
+        history.push(`/search/${searchLocation}`)
         poiService.findPOIByLocation(location)
             .then((results) => {
                 setResults(results)
@@ -25,9 +25,9 @@ const SearchScreen = () => {
             <h2>Search Screen</h2>
             <input value={searchLocation}
                    onChange={(event) => {
-                        setSearchLocation(event.target.value)
-                    }}
-                    className="form-control"/>
+                       setSearchLocation(event.target.value)
+                   }}
+                   className="form-control"/>
             <button onClick={() => {
                 findPOIByLocation(searchLocation)
             }} className="btn btn-primary">
@@ -36,12 +36,13 @@ const SearchScreen = () => {
             <ul className="list-group">
                 {
 
-                    results.results.map((poi) =>{
+                    results.results.map((poi, idx) =>{
                         return(
-                            <li className="list-group-item">
+                            <li className="list-group-item" key={idx}>
                                 {/*poi.place_id does not work*/}
                                 {JSON.stringify(poi.photos)}
-                                <Link to={`/details/${poi.reference}`}>
+                                {/*react: if map, give child key!!*/}
+                                <Link to={`/details/${poi.name}/${poi.reference}`}>
                                     {/*/${poi.photos[0].photo_reference}*/}
                                     {/*.map((photo) => {return(photo.photo_reference)})*/}
                                     {poi.name}

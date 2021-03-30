@@ -12,15 +12,15 @@ const findPlaceByPoiID = (PoiID) => {
         .then(res => res.json())
 }
 
-const findPhotoByPhotoReference = (photoReference) => {
-    return fetch(`${proxyurl}https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA
-`)
-        .then(res => res.text())
-// https://maps.googleapis.com/maps/api/place/details/json?place_id=${}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA
-}
+// const findPhotoByPhotoReference = (photoReference) => {
+//     return fetch(`${proxyurl}https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA
+// `)
+//         .then(res => res.text())
+// // https://maps.googleapis.com/maps/api/place/details/json?place_id=${}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA
+// }
 
 export default {
     findPOIByLocation,
     findPlaceByPoiID,
-    findPhotoByPhotoReference
+    // findPhotoByPhotoReference
 }
