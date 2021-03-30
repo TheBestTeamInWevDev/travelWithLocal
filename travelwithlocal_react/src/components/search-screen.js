@@ -40,7 +40,7 @@ const SearchScreen = () => {
                         return(
                             <li className="list-group-item" key={idx}>
                                 {/*poi.place_id does not work*/}
-                                {JSON.stringify(poi.photos)}
+                                {/*{JSON.stringify(poi.photos)}*/}
                                 {/*react: if map, give child key!!*/}
                                 <Link to={`/details/${poi.name}/${poi.reference}/${poi.photos[0].photo_reference}`}>
                                     {/*.map((photo) => {return(photo.photo_reference)})*/}
