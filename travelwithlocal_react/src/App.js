@@ -13,7 +13,7 @@ function App() {
             <Route path={["/search", "/search/:location"]} exact={true}>
                 <SearchScreen/>
             </Route>
-            <Route path="/details/:location/:poiID" exact={true}>
+            <Route path="/details/:location/:poiID/:photoReference" exact={true}>
                 <DetailsScreen/>
             </Route>
         </BrowserRouter>
