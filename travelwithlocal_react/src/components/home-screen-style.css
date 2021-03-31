@@ -1,0 +1,34 @@
+.wbdv-sticky-top {
+    background-color:#66c2ff;
+    padding: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    white-space: nowrap;
+}
+
+
+.wbdv-nav-hbg-logo{
+    margin-left: 20%;
+    top: 4px;
+    color:white;
+}
+
+.wbdv-nav-title {
+    font-weight:bold;
+    font-size: 24px;
+    font-family: Cursive;
+    top:1px;
+    color:white;
+    display:inline-block;
+}
+
+.detail-header{
+    color:white;
+}
+
+.detail-text{
+    color:white;
+}

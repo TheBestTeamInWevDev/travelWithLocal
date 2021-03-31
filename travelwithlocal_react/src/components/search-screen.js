@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory} from "react-router-dom"
 import poiService from "../services/poi-service"
+import "./search-screen-style.css"
 
 const SearchScreen = () => {
     const history = useHistory()
@@ -22,18 +23,43 @@ const SearchScreen = () => {
 
     return(
         <div>
-            <h2>Search Screen</h2>
-            <input value={searchLocation}
-                   onChange={(event) => {
-                       setSearchLocation(event.target.value)
-                   }}
-                   className="form-control"/>
-            <button onClick={() => {
-                findPOIByLocation(searchLocation)
-            }} className="btn btn-primary">
-                Search
-            </button>
-            <ul className="list-group">
+
+            <div className="wbdv-sticky-top">
+                <div className="row" >
+                    <div className="col">
+                        <i className="fas fa-bars fa-2x wbdv-nav-hbg-logo"></i>
+                    </div>
+                    <div className="col-2 d-none d-lg-block wbdv-nav-title">
+                        Travel Buddy
+                    </div>
+                    <div className="col-8">
+                        <input value={searchLocation}
+                               onChange={(event) => {
+                                   setSearchLocation(event.target.value)
+                               }}
+                               className="form-control"/>
+                    </div>
+                    <div className="col-1">
+                        {/*<button onClick={() => {findPOIByLocation(searchLocation)}} className="fas fa-search fa-2x wbdv-nav-plus-logo">*/}
+                            <a onClick={() => {findPOIByLocation(searchLocation)}} className="fas fa-search fa-2x search-logo" role="button" ></a>
+                        {/*</button>*/}
+                    </div>
+
+                </div>
+            </div>
+
+            {/*<input value={searchLocation}*/}
+            {/*       onChange={(event) => {*/}
+            {/*           setSearchLocation(event.target.value)*/}
+            {/*       }}*/}
+            {/*       className="form-control"/>*/}
+            {/*<button onClick={() => {*/}
+            {/*    findPOIByLocation(searchLocation)*/}
+            {/*}} className="btn btn-primary">*/}
+            {/*    <a className="fas fa-search fa-2x wbdv-nav-plus-logo" role="button" ></a>*/}
+            {/*</button>*/}
+            <div className={"wbdv-header-top"}>
+            <ul className=" list-group">
                 {
 
                     results.results.map((poi, idx) =>{
@@ -43,8 +69,7 @@ const SearchScreen = () => {
                                 {/*{JSON.stringify(poi.photos)}*/}
                                 {/*react: if map, give child key!!*/}
                                 <Link to={`/details/${poi.name}/${poi.reference}/${poi.photos[0].photo_reference}`}>
-                                    {/*.map((photo) => {return(photo.photo_reference)})*/}
-                                    {poi.name}
+                                    <i className={"search-result-text"}>{poi.name}</i>
                                 </Link>
                             </li>
                         )
@@ -52,6 +77,7 @@ const SearchScreen = () => {
                 }
 
             </ul>
+            </div>
         </div>
     )
 }

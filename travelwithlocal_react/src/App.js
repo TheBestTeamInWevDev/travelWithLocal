@@ -5,12 +5,12 @@ import HomeScreen from "./components/home-screen";
 
 function App() {
   return (
-    <div className="container-fluid">
+    <div className="container-fluid p-0">
         <BrowserRouter>
-            <Route path="/" exact={true}>
-                <HomeScreen/>
-            </Route>
-            <Route path={["/search", "/search/:location"]} exact={true}>
+            {/*<Route path="/" exact={true}>*/}
+            {/*    <HomeScreen/>*/}
+            {/*</Route>*/}
+            <Route path={["/", "/search", "/search/:location"]} exact={true}>
                 <SearchScreen/>
             </Route>
             <Route path="/details/:location/:poiID/:photoReference" exact={true}>

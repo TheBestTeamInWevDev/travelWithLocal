@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import {Link, useHistory, useParams} from 'react-router-dom'
 import poiService from '../services/poi-service'
+import "./details-screen-style.css"
 const proxyurl = "https://blooming-retreat-25143.herokuapp.com/";
 
 const DetailsScreen = () => {
@@ -28,6 +29,20 @@ const DetailsScreen = () => {
                 setPlace(data)
             })
     }
+    // console.log("Detailed Page")
+    // const weekday = place.result && place.result.opening_hours.weekday_text;
+
+    // const weekday = [
+    //     "Monday: 5:00 AM – 11:00 PM",
+    //     "Tuesday: 5:00 AM – 11:00 PM",
+    //     "Wednesday: 5:00 AM – 11:00 PM",
+    //     "Thursday: 5:00 AM – 11:00 PM",
+    //     "Friday: 5:00 AM – 11:00 PM",
+    //     "Saturday: 5:00 AM – 11:00 PM",
+    //     "Sunday: 5:00 AM – 11:00 PM"
+    // ]
+    //
+    // console.log(weekday)
     // const findPhotoByPhotoReference = () => {
     //     poiService.findPhotoByPhotoReference(photoReference)
     //         .then((ref) => {
@@ -37,21 +52,40 @@ const DetailsScreen = () => {
     // }
 
     return(
-        <div>
-            <button className="btn btn-primary" onClick={() => history.goBack()}>
-                Back
-            </button>
-
-            <h2>{location}</h2>
-
-            {/*<p>{JSON.stringify(place.result)}</p>*/}
-            {/*<h1>{photoReference}</h1>*/}
-            {/*doesnt have a value yet, render before, first time*/}
-            <p>Location: {place.result && place.result.formatted_address}</p>
-            {/*<p>{place.result.photos}</p>*/}
-            <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA`}/>
+        <div className={"detail-body"}>
 
 
+            <div className="wbdv-sticky-top">
+                <div className="row">
+                    <div className="col-1">
+                        <i onClick={() => history.goBack()} role={"btn"}
+                           className="detail-back-btn fas fa-times fa-2x "></i>
+                    </div>
+                    <div className="col-3 detail-title-location">
+                        {location}
+                    </div>
+                    <div className="col"></div>
+                </div>
+            </div>
+            <div className={"wbdv-header-top"}>
+
+                <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA`}/>
+                <br/>
+                <p className={"detail-text"}>Weekday Hours: </p>
+                <ul>
+                    {place.result && place.result.opening_hours.weekday_text.map((el) => <li className={"detail-text"}>{el}</li> )}
+                    {/*<li className={"detail-text"}>{place.result && place.result.opening_hours.weekday_text.split(',')}</li>*/}
+                </ul>
+
+                {/*<h2 className={"detail-header"}>{location}</h2>*/}
+
+                {/*<p>{JSON.stringify(place.result)}</p>*/}
+                {/*<h1>{photoReference}</h1>*/}
+                {/*doesnt have a value yet, render before, first time*/}
+                <p className={"detail-text"}>Location: {place.result && place.result.formatted_address}</p>
+                {/*<p>{place.result.photos}</p>*/}
+
+            </div>
 
         </div>
 
