@@ -1,0 +1,53 @@
+.wbdv-sticky-top {
+    background-color:#66c2ff;
+    padding: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    white-space: nowrap;
+}
+
+
+.wbdv-nav-hbg-logo{
+    margin-left: 20%;
+    top: 4px;
+    color:white;
+}
+
+.wbdv-nav-title {
+    font-weight:bold;
+    font-size: 24px;
+    font-family: "Comic sans MS";
+    top:1px;
+    color:white;
+    display:inline-block;
+}
+
+.search-logo{
+    color:white;
+}
+.search-result-text{
+    color:black;
+    font-size: 20px;
+}
+
+
+.wbdv-container-position{
+    position: relative;
+    top:90px;
+}
+
+.wbdv-header-top{
+    /*background-color:#333333;*/
+    position: fixed;
+    font-size: 15px;
+    top:53px;
+    width: 100%;
+    z-index: 2;
+    /*white-space: nowrap;*/
+    color:white;
+    font-weight:bold;
+}
+
