@@ -7,6 +7,19 @@ const HomeScreen = () => {
             <Link to="/search">
                 Search
             </Link>
+            <br/>
+            <Link to="/register">
+                Register
+            </Link>
+            <br/>
+            <Link to="/login">
+                Login
+            </Link>
+            <br/>
+            <Link to="/profile">
+                Profile
+            </Link>
+
             {/*<br/>            */}
             {/*<Link to="/details">*/}
             {/*    Details*/}
