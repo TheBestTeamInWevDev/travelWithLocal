@@ -53,8 +53,6 @@ const DetailsScreen = () => {
 
     return(
         <div className={"detail-body"}>
-
-
             <div className="wbdv-sticky-top">
                 <div className="row">
                     <div className="col-1">

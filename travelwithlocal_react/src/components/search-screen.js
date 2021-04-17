@@ -62,7 +62,7 @@ const SearchScreen = () => {
             <ul className=" list-group">
                 {
 
-                    results.results.map((poi, idx) =>{
+                    results.results && results.results.map((poi, idx) =>{
                         return(
                             <li className="list-group-item" key={idx}>
                                 {/*poi.place_id does not work*/}
