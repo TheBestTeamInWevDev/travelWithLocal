@@ -71,7 +71,8 @@ const DetailsScreen = () => {
                 <br/>
                 <p className={"detail-text"}>Weekday Hours: </p>
                 <ul>
-                    {place.result && place.result.opening_hours.weekday_text.map((el) => <li className={"detail-text"}>{el}</li> )}
+                    {place.result && place.result.opening_hours && place.result.opening_hours.weekday_text.map((el) => <li className={"detail-text"}>{el}</li> )}
+                    {place.result && !place.result.opening_hours && <div className={"detail-text"}>Currently Unavailable</div>}
                     {/*<li className={"detail-text"}>{place.result && place.result.opening_hours.weekday_text.split(',')}</li>*/}
                 </ul>
 
