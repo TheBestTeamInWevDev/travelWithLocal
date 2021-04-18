@@ -9,11 +9,11 @@ import React from "react";
 
 function App() {
     return (
-        <div className="container-fluid p-0">
+        <div className="container-fluid">
             <BrowserRouter>
-                {/*<Route path="/" exact={true}>*/}
-                {/*    <HomeScreen/>*/}
-                {/*</Route>*/}
+                <Route path="/" exact={true}>
+                    <HomeScreen/>
+                </Route>
                 <Route path="/login" exact={true}>
                     <Login/>
                 </Route>
@@ -23,7 +23,7 @@ function App() {
                 <Route path="/profile" exact={true}>
                     <Profile/>
                 </Route>
-                <Route path={["/", "/search", "/search/:location"]} exact={true}>
+                <Route path={["/search", "/search/:location"]} exact={true}>
                     <SearchScreen/>
                 </Route>
                 <Route path="/details/:location/:poiID/:photoReference" exact={true}>
