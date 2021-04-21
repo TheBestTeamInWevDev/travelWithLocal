@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory} from "react-router-dom"
 import poiService from "../services/poi-service"
 import "./search-screen-style.css"
+import user from "../components/users/userConstructor"
 
 const SearchScreen = () => {
     const history = useHistory()
@@ -30,9 +31,9 @@ const SearchScreen = () => {
                         <i className="fas fa-bars fa-2x wbdv-nav-hbg-logo"></i>
                     </div>
                     <div className="col-2 d-none d-lg-block wbdv-nav-title">
-                        Travel Buddy
+                        Travel With Locals
                     </div>
-                    <div className="col-8">
+                    <div className="col-6">
                         <input value={searchLocation}
                                onChange={(event) => {
                                    setSearchLocation(event.target.value)
@@ -44,6 +45,10 @@ const SearchScreen = () => {
                             <a onClick={() => {findPOIByLocation(searchLocation)}} className="fas fa-search fa-2x search-logo" role="button" ></a>
                         {/*</button>*/}
                     </div>
+                    <div className={"col-2"}>
+                        <p>Welcome {user.getName()}</p>
+                    </div>
+                    {console.log("SearchScreen Current User: " + user.getName())}
 
                 </div>
             </div>

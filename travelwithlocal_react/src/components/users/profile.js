@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import userService from '../../services/user-service'
+import userConstructor from "./userConstructor";
 
 const Profile = () => {
     const [currentUser, setCurrentUser] = useState({username: '', password: ''})
@@ -12,7 +13,12 @@ const Profile = () => {
     }, [])
     const history = useHistory()
     const logout = () => {
+        userConstructor.setName("")
+        userConstructor.setUserStatus(0)
         // nav back to home
+        setCurrentUser({username: '', password: ''})
+        userService.logout().
+        then()
         history.push("/")
     }
     return(

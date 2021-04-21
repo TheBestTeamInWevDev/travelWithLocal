@@ -2,7 +2,9 @@ import React,{useEffect, useState} from 'react'
 import {Link, useHistory, useParams} from 'react-router-dom'
 import poiService from '../services/poi-service'
 import "./details-screen-style.css"
+import userStatus from "../components/users/userConstructor";
 const proxyurl = "https://blooming-retreat-25143.herokuapp.com/";
+
 
 const DetailsScreen = () => {
 
@@ -29,6 +31,8 @@ const DetailsScreen = () => {
                 setPlace(data)
             })
     }
+
+
     // console.log("Detailed Page")
     // const weekday = place.result && place.result.opening_hours.weekday_text;
 
@@ -62,7 +66,13 @@ const DetailsScreen = () => {
                     <div className="col-3 detail-title-location">
                         {location}
                     </div>
-                    <div className="col"></div>
+                    <div className="col">
+                            <p className={"detail-back-btn"}>Welcome {userStatus.getName()}</p>
+                    </div>
+                    <div className="col-1">
+                        <i onClick={() => history.goBack()} role={"btn"}
+                           className="detail-back-btn far fa-star fa-2x "></i>
+                    </div>
                 </div>
             </div>
             <div className={"wbdv-header-top"}>

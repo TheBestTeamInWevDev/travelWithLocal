@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import userService from '../../services/user-service'
+import userConstructor from "./userConstructor";
 
 const Login = () => {
     const [credentials, setCredentials] = useState({username: '', password: ''})
@@ -12,11 +13,11 @@ const Login = () => {
                 if(user === 0) {
                     alert("login failed, try again")
                 } else {
-                    history.push("/profile")
+                    userConstructor.setName(credentials.username)
+                    userConstructor.setUserStatus(1)
+                    history.push("/search")
                 }
             })
-        // similar to register, programmatically nav to profile
-        history.push("/profile")
     }
 
     return(

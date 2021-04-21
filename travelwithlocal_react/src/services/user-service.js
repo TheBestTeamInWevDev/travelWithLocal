@@ -21,6 +21,9 @@ const login = (credentials) => {
 }
 
 const register = (credentials) => {
+    console.log("Register Service: UserName: "+ credentials.username
+        + " Password: " +credentials.password
+        + " role: "+ credentials.role)
     return fetch(`${USER_API}/register`, {
         method: "POST",
         credentials: "include",
@@ -32,7 +35,15 @@ const register = (credentials) => {
         .then(response => response.json())
 }
 
-const logout = () => {}
+const logout = () => {
+    return fetch(`${USER_API}/logout`, {
+        method: "POST",
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+}
 
 export default {
     register, login, logout, profile
