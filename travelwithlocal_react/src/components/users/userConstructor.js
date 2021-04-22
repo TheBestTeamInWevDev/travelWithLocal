@@ -1,5 +1,6 @@
 let userConstructor = (function() {
     let userName = "";
+    let userType = "";
     let userStatus = 0;
 
     let getName = function() {
@@ -11,6 +12,19 @@ let userConstructor = (function() {
         console.log("Set Name to "+ name)
         userName = name;
     };
+
+
+    let getUserType = function() {
+        console.log("Get current userType"+ userType)
+        return userType;
+    };
+
+    let setUserType = function(type) {
+        console.log("Set userType to "+ type)
+        userType = type;
+    };
+
+
 
     let getUserStatus = function() {
         console.log("Get current userStatus"+ userStatus)
@@ -26,8 +40,10 @@ let userConstructor = (function() {
         getName: getName,
         setName: setName,
         getUserStatus: getUserStatus,
-        setUserStatus: setUserStatus
-    }
+        setUserStatus: setUserStatus,
+        getUserType: getUserType,
+        setUserType: setUserType
+}
 
 })();
 

@@ -7,23 +7,15 @@ const proxyurl = "https://blooming-retreat-25143.herokuapp.com/";
 
 
 const DetailsScreen = () => {
-
-    // console.log("This is detail screen")
+    const [poiInfo, setPoiInfo] = useState({name: '', poiID: '', location: '', imageURL: '', username: ''})
+    const [saved, setSaved] = useState(false)
     const {location, poiID, photoReference} = useParams()
-    // console.log(location)
-    // console.log(poiID)
-    // console.log(photoReference)
-
     const history = useHistory()
     const [place, setPlace] = useState({})
-    // const [photo, setPhoto] = useState({})
 
     useEffect(() => {
         findPlaceByPoiID()
     }, [])
-    // useEffect(() => {
-    //     findPhotoByPhotoReference()
-    // }, [])
 
     const findPlaceByPoiID = () => {
         poiService.findPlaceByPoiID(poiID)
@@ -32,28 +24,18 @@ const DetailsScreen = () => {
             })
     }
 
+    const SavePOIForTraveler = () =>{
+        console.log("Save POI To DB")
+        setPoiInfo({
+            location: location,
+            poiID: poiID,
+            address: place.result.formatted_address,
+            imageURL: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA`,
+            username: userStatus.getName()})
+        poiService.SavePOIForTraveler(poiInfo)
+            .then()
+    }
 
-    // console.log("Detailed Page")
-    // const weekday = place.result && place.result.opening_hours.weekday_text;
-
-    // const weekday = [
-    //     "Monday: 5:00 AM – 11:00 PM",
-    //     "Tuesday: 5:00 AM – 11:00 PM",
-    //     "Wednesday: 5:00 AM – 11:00 PM",
-    //     "Thursday: 5:00 AM – 11:00 PM",
-    //     "Friday: 5:00 AM – 11:00 PM",
-    //     "Saturday: 5:00 AM – 11:00 PM",
-    //     "Sunday: 5:00 AM – 11:00 PM"
-    // ]
-    //
-    // console.log(weekday)
-    // const findPhotoByPhotoReference = () => {
-    //     poiService.findPhotoByPhotoReference(photoReference)
-    //         .then((ref) => {
-    //             setPhoto(ref)
-    //             console.log(ref)
-    //         })
-    // }
 
     return(
         <div className={"detail-body"}>
@@ -70,8 +52,9 @@ const DetailsScreen = () => {
                             <p className={"detail-back-btn"}>Welcome {userStatus.getName()}</p>
                     </div>
                     <div className="col-1">
-                        <i onClick={() => history.goBack()} role={"btn"}
-                           className="detail-back-btn far fa-star fa-2x "></i>
+                        <i onClick={() => {SavePOIForTraveler();setSaved(true)}} role={"btn"}
+                           className={`detail-back-btn ${saved?
+                               'fas fa-star fa-2x' : 'far fa-star fa-2x'}`}></i>
                     </div>
                 </div>
             </div>
@@ -91,7 +74,7 @@ const DetailsScreen = () => {
                 {/*<p>{JSON.stringify(place.result)}</p>*/}
                 {/*<h1>{photoReference}</h1>*/}
                 {/*doesnt have a value yet, render before, first time*/}
-                <p className={"detail-text"}>Location: {place.result && place.result.formatted_address}</p>
+                <p className={"detail-text"}>Address: {place.result && place.result.formatted_address}</p>
                 {/*<p>{place.result.photos}</p>*/}
 
             </div>
