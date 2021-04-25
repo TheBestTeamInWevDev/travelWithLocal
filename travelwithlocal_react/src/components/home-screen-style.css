@@ -23,3 +23,108 @@
 .detail-text{
     color:white;
 }
+
+#get_started{
+    background-color: #66c2ff;
+    color: white;
+    margin: 0;
+    position: absolute;
+    top: 60%;
+    left: -35%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#sentence{
+    /*background-color: #66c2ff;*/
+    color: white;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: -35%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#looking_for{
+    color: gray;
+    margin: 0;
+    position: absolute;
+    top: 20%;
+    left: 25%;
+}
+
+#beach {
+    color: gray;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+}
+
+#city_tour {
+    color: gray;
+    margin: 0;
+    position: absolute;
+    top: 80%;
+    left: 25%;
+}
+
+#hiking {
+    color: gray;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 70%;
+}
+
+#foodie {
+    color: gray;
+    margin: 0;
+    position: absolute;
+    top: 80%;
+    left: 70%;
+}
+
+#beach_img {
+    margin: 0;
+    position: absolute;
+    top: 32%;
+    left: 25%;
+}
+
+#beach_img:hover {
+    transform: scale(1.2);
+}
+
+#city_img {
+    margin: 0;
+    position: absolute;
+    top: 60%;
+    left: 22%;
+}
+
+#city_img:hover {
+    transform: scale(1.2);
+}
+
+#hiking_img{
+    margin: 0;
+    position: absolute;
+    top: 32%;
+    left: 65%;
+}
+#hiking_img:hover {
+    transform: scale(1.2);
+}
+
+#foodie_img {
+    margin: 0;
+    position: absolute;
+    top: 60%;
+    left: 65%;
+}
+
+#foodie_img:hover {
+    transform: scale(1.2);
+}
