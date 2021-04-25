@@ -27,13 +27,13 @@ const SearchScreen = () => {
 
             <div className="wbdv-sticky-top">
                 <div className="row" >
-                    <div className="col">
+                    <div className="col-1">
                         <i className="fas fa-bars fa-2x wbdv-nav-hbg-logo"></i>
                     </div>
                     <div className="col-2 d-none d-lg-block wbdv-nav-title">
                         Travel With Locals
                     </div>
-                    <div className="col-6">
+                    <div className="col-5">
                         <input value={searchLocation}
                                onChange={(event) => {
                                    setSearchLocation(event.target.value)
@@ -45,8 +45,15 @@ const SearchScreen = () => {
                             <a onClick={() => {findPOIByLocation(searchLocation)}} className="fas fa-search fa-2x search-logo" role="button" ></a>
                         {/*</button>*/}
                     </div>
-                    <div className={"col-2"}>
+                    <div className="col-2">
                         <p>Welcome {user.getName()}</p>
+                    </div>
+                    <div className="col-1 float-right">
+                            <Link to="/profile">
+                                <a className="btn btn-block btn-info">
+                                    Profile
+                                </a>
+                            </Link>
                     </div>
                     {console.log("SearchScreen Current User: " + user.getName())}
 

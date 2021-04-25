@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import userService from '../../services/user-service'
 import userConstructor from "./userConstructor";
 import "./profile-screen-style.css"
@@ -25,7 +25,21 @@ const Profile = () => {
     }
     return(
         <div className={"wbdv-profile-body"}>
-            <h1>Profile</h1>
+            <div className="row">
+                <div className="col-8 col-md-10">
+                    <h1>Profile</h1>
+                </div>
+                <div className="col-4 col-md-2 float-right">
+                    <Link to="/">
+                        <a className="btn btn-block btn-primary">
+                            Home
+                        </a>
+                    </Link>
+                </div>
+            </div>
+
+
+
             {/*{JSON.stringify(currentUser)}*/}
             {/*<h3>Welcome {currentUser.username}</h3>*/}
             <div className="container">
