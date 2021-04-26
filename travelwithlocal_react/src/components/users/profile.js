@@ -6,6 +6,8 @@ import "./profile-screen-style.css"
 
 const Profile = () => {
     const [currentUser, setCurrentUser] = useState({username: '', password: ''})
+    const [credentials, setCredentials] = useState({username: '', password: '', email: '', role: 'TRAVELLER'})
+
     useEffect(() => {
         userService.profile()
             .then((currentUser) => {
@@ -23,6 +25,40 @@ const Profile = () => {
         then()
         history.push("/")
     }
+
+    // find user, update all attributes
+    const update = () => {
+        userService.update(credentials)
+            .then((user) => {
+                console.log(user)
+                if(user === 0) {
+                    alert("username already taken")
+                } else {
+                    // go to the profile
+                    userConstructor.setName(credentials.username)
+                    userConstructor.setUserStatus(1)
+                    userConstructor.setUserType(credentials.role)
+                    history.push("/profile")
+                }
+            })
+    }
+/*
+    const register = () => {
+        userService.register(credentials)
+            .then((user) => {
+                console.log(user)
+                if(user === 0) {
+                    alert("username already taken")
+                } else {
+                    // go to the profile
+                    userConstructor.setName(credentials.username)
+                    userConstructor.setUserStatus(1)
+                    userConstructor.setUserType(credentials.role)
+                    history.push("/profile")
+                }
+            })
+    }
+ */
     return(
         <div className={"wbdv-profile-body"}>
             <div className="row">
@@ -65,7 +101,12 @@ const Profile = () => {
                     <div className="col-sm-10">
                         <input type="password"
                                className="form-control wbdv-profile-input"
-                               value={currentUser.password}/>
+                               onChange={(e) => {setCredentials({...credentials, username: e.target.value})}}
+                               placeholder={currentUser.password}
+                               value={credentials.username}
+                        />
+
+
                     </div>
                 </div>
 
@@ -77,7 +118,10 @@ const Profile = () => {
                     <div className="col-sm-10">
                         <input type="email"
                                className="form-control wbdv-profile-input"
-                               value={currentUser.email}/>
+                               onChange={(e) => {setCredentials({...credentials, email: e.target.value})}}
+                               placeholder={currentUser.email}
+                               value={credentials.email}
+                        />
                     </div>
                 </div>
 
@@ -86,10 +130,20 @@ const Profile = () => {
                            className="col-sm-2 col-form-label wbdv-profile-font">
                         User Type
                     </label>
+
                     <div className="col-sm-10">
-                        <input type="email"
-                               className="form-control wbdv-profile-input"
-                               value={currentUser.role}/>
+                        {/*<input type="email"*/}
+                        {/*       className="form-control wbdv-profile-input"*/}
+                        {/*       onChange={(e) => {setCredentials({...credentials, role: e.target.value})}}*/}
+                        {/*       value={currentUser.role}/>*/}
+                        <select onChange={(e) =>
+                        {setCredentials({...credentials, role: e.target.value})}}
+                                placeholder={credentials.role}
+                                value={credentials.role}
+                                className="form-control wbdv-profile-input">
+                            <option value={"TRAVELLER"}>Traveller</option>
+                            <option value={"LOCALGUIDE"}>Local Guide</option>
+                        </select>
                     </div>
                 </div>
 
@@ -101,8 +155,12 @@ const Profile = () => {
                     <div className="col-sm-10">
 
                         <ul>
-                            {currentUser.favoritePlaces && currentUser.favoritePlaces.map((el) => <li className={"wbdv-profile-input"}>{el.location}</li> )}
-                            {!currentUser.favoritePlaces && <div className={"wbdv-profile-input"}>Currently Unavailable</div>}
+                            {currentUser.favoritePlaces &&
+                            currentUser.favoritePlaces.map((el) =>
+                                <li className={"wbdv-profile-input"}>{el.location}</li> )}
+                            {!currentUser.favoritePlaces &&
+                            <div className={"wbdv-profile-input"}>
+                                Currently Unavailable</div>}
                         </ul>
                     </div>
                 </div>
@@ -112,7 +170,8 @@ const Profile = () => {
                     <label className="col-sm-2 col-form-label"></label>
                     <div className="col-sm-10">
                         <a className="btn btn-block wbdv-btn-update"
-                           href="#"
+                           // href="#"
+                           onClick={update}
                            role="button">
                             Update
                         </a>

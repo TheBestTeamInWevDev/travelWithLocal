@@ -22,9 +22,26 @@ const login = (credentials) => {
 
 const register = (credentials) => {
     console.log("Register Service: UserName: "+ credentials.username
+        + " email: " + credentials.email
         + " Password: " +credentials.password
         + " role: "+ credentials.role)
     return fetch(`${USER_API}/register`, {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(credentials),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+}
+
+const update = (credentials) => {
+    console.log("Update Service: UserName: "+ credentials.username
+        + " email: " + credentials.email
+        + " Password: " +credentials.password
+        + " role: "+ credentials.role)
+    return fetch(`${USER_API}/update`, {
         method: "POST",
         credentials: "include",
         body: JSON.stringify(credentials),
@@ -46,5 +63,5 @@ const logout = () => {
 }
 
 export default {
-    register, login, logout, profile
+    register, login, logout, profile, update
 }

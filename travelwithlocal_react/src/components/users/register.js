@@ -101,7 +101,8 @@ const Register = () => {
                             {/*    onChange={(e) => {setCredentials({...credentials, email: e.target.value})}}*/}
                             {/*    className="form-control"*/}
                             {/*    placeholder="email"/>*/}
-                                 <select onChange={(e) => {setCredentials({...credentials, role: e.target.value})}}
+                                 <select onChange={(e) =>
+                                 {setCredentials({...credentials, role: e.target.value})}}
                                      value={credentials.role}
                                      className="form-control">
                                      <option value={"TRAVELLER"}>Traveller</option>
