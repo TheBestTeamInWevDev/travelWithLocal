@@ -8,7 +8,7 @@ const GuideCard = ({guide}) => {
         <div className="card m-1">
             <div className="card-body">
 
-                <Link to={`/profile/${guide._id}`}>
+                <Link to={`/profile/${guide.username}`}>
                     <h6>
                         {guide.username}
                     </h6>

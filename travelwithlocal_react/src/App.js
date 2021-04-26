@@ -30,7 +30,7 @@ function App() {
                 <Route path="/details/:location/:poiID/:photoReference" exact={true}>
                     <DetailsScreen/>
                 </Route>
-                <Route path="/profile/:guideID" exact={true}>
+                <Route path="/profile/:username" exact={true}>
                     <PublicProfile/>
                 </Route>
             </BrowserRouter>

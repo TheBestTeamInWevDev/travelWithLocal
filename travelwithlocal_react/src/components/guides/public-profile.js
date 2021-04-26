@@ -4,14 +4,15 @@ import userService from '../../services/user-service'
 import "../users/profile-screen-style.css"
 
 const PublicProfile = () => {
-    const userID = useParams()
-    const [guide, setGuide] = useState({})
+    const username = useParams()
+    const [guide, setGuide] = useState([])
     useEffect(() => {
-        userService.findUserByUsername(userID)
+        userService.findPublicProfile(username)
             .then((guide) => {
                 setGuide(guide)
             })
-    })
+    }, [])
+
     return(
         <div className={"wbdv-profile-body"}>
             <div className="row mb-5">

@@ -47,18 +47,24 @@ const logout = () => {
 
 const findGuidesByLocation = (location) => {
     return fetch(`${USER_API}/findGuides/${location}`, {
-        method: "GET"
+        method: "GET",
+        headers: {
+            'content-type': 'application/json'
+        }
     })
         .then(response => response.json())
 }
 
-const findUserByUsername = (username) => {
-    return fetch(`${USER_API}/findUser/${username}`, {
-        method: "GET"
+const findPublicProfile = (username) => {
+    return fetch(`${USER_API}/publicProfile/${username}`, {
+        method: "GET",
+        headers: {
+            'content-type': 'application/json'
+        }
     })
         .then(response => response.json())
 }
 
 export default {
-    register, login, logout, profile, findGuidesByLocation, findUserByUsername
+    register, login, logout, profile, findGuidesByLocation, findPublicProfile
 }
