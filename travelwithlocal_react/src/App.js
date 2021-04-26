@@ -6,6 +6,7 @@ import Login from "./components/users/login";
 import Register from "./components/users/register";
 import Profile from "./components/users/profile";
 import React from "react";
+import PublicProfile from "./components/guides/public-profile";
 
 function App() {
     return (
@@ -28,6 +29,9 @@ function App() {
                 </Route>
                 <Route path="/details/:location/:poiID/:photoReference" exact={true}>
                     <DetailsScreen/>
+                </Route>
+                <Route path="/profile/:guideID" exact={true}>
+                    <PublicProfile/>
                 </Route>
             </BrowserRouter>
         </div>

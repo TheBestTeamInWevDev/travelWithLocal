@@ -15,6 +15,7 @@ const SearchScreen = () => {
     useEffect(() => {
         setSearchLocation(location)
         findPOIByLocation(location)
+        findGuidesByLocation(location)
     }, [])
     const findPOIByLocation = (location) => {
         // history.push(location)
@@ -104,20 +105,23 @@ const SearchScreen = () => {
 
                         </ul>
                     </div>
-                    <div className="col-4">
-                        <div className="row">
-                            <h3>
-                                Recommended Guides
-                            </h3>
+                    {
+                        guides.length > 0 &&
+                        <div className="col-4">
+                            <div className="row">
+                                <h3>
+                                    Recommended Guides
+                                </h3>
+                            </div>
+                            <div className="row">
+                                {
+                                    guides.map(guide =>
+                                        <GuideCard guide={guide}/> )
+                                }
+                            </div>
                         </div>
-                        <div className="row">
-                            {
-                                guides.map(guide =>
-                                <GuideCard guide={guide}/> )
-                            }
-                        </div>
+                    }
 
-                    </div>
                 </div>
             </div>
         </div>
