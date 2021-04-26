@@ -55,7 +55,7 @@ const Profile = () => {
                         <select onChange={(e) =>
                         {setCredentials({...credentials, role: e.target.value})}}
                                 placeholder={credentials.role}
-                                value={credentials.role}
+                                value={currentUser.role}
                                 className="form-control wbdv-profile-input">
                             <option value={"TRAVELLER"}>Traveller</option>
                             <option value={"LOCALGUIDE"}>Local Guide</option>
@@ -69,7 +69,6 @@ const Profile = () => {
                         </label>
                         <div className="col-sm-10">
                             <input id="gender" className="form-control-2"
-
                             />
                         </div>
                     </div>
@@ -81,7 +80,8 @@ const Profile = () => {
                         <div className="col-sm-10">
                             <input type="text"
                                    readOnly
-                                   placeholder="username"
+                                   placeholder={currentUser.username}
+                                   value={credentials.username}
                                    className="form-control-2"
                                    id="username"/>
                         </div>
@@ -96,9 +96,9 @@ const Profile = () => {
                                onChange={(e) => {setCredentials({...credentials, email: e.target.value})}}
                                placeholder={currentUser.email}
                                value={credentials.email}
-                                   className="form-control-2"
-                                   placeholder="email"
-                                   id="email"/>
+                               className="form-control-2"
+                               placeholder="email"
+                               id="email"/>
                         </div>
                     </div>
 
@@ -108,7 +108,8 @@ const Profile = () => {
                             password
                         </label>
                         <div className="col-sm-10">
-                            <input type="password"
+                            <input
+                                // type="password"
                                    className="form-control wbdv-profile-input"
                                    onChange={(e) => {setCredentials({...credentials, username: e.target.value})}}
                                    placeholder={currentUser.password}
@@ -124,16 +125,11 @@ const Profile = () => {
                         <div className="col-sm-10">
 
                             <input type="text"
-
                                    className="form-control-2"
                                    placeholder="favorite place"
                                    id="favorite place"/>
                         </div>
                     </div>
-
-
-
-
 
                 </div>
 
