@@ -47,18 +47,18 @@ const Login = () => {
                 <form>
                 <div className="form-group row">
                     <div className="col-sm-6">
-                        <div className="mb-3 row">
-                            <label htmlFor="role">
-                                <i className="left_icon fas fa-smile-wink"></i>
-                            </label>
-                            <div className="col-sm-10">
-                                <select id="role" className="form-control-2">
-                                    <option disabled>select your role</option>
-                                    <option>traveler</option>
-                                    <option>local</option>
-                                </select>
-                            </div>
-                        </div>
+                        {/*<div className="mb-3 row">*/}
+                        {/*    <label htmlFor="role">*/}
+                        {/*        <i className="left_icon fas fa-smile-wink"></i>*/}
+                        {/*    </label>*/}
+                        {/*    <div className="col-sm-10">*/}
+                        {/*        <select id="role" className="form-control-2">*/}
+                        {/*            <option disabled>select your role</option>*/}
+                        {/*            <option>traveler</option>*/}
+                        {/*            <option>local</option>*/}
+                        {/*        </select>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
 
                         <div className="mb-3 row form-group">
                             <label htmlFor="username">
