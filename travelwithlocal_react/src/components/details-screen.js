@@ -18,11 +18,13 @@ const DetailsScreen = () => {
     const [guides, setGuides] = useState([])
 
     useEffect(() => {
+        console.log("Details-screen")
         findPlaceByPoiID()
         findLocalsByLocation()
     }, [])
 
     const findPlaceByPoiID = () => {
+        console.log("findPlaceByPoiID")
         poiService.findPlaceByPoiID(poiID)
             .then((data) => {
                 setPlace(data)
