@@ -46,6 +46,7 @@ const logout = () => {
 }
 
 const findGuidesByLocation = (location) => {
+    console.log("findGuidesByLocation " + location)
     return fetch(`${USER_API}/findGuides/${location}`, {
         method: "GET",
         headers: {
@@ -65,6 +66,17 @@ const findPublicProfile = (username) => {
         .then(response => response.json())
 }
 
+const requestGuide = (userName, guideName) => {
+    console.log("API User:"+ userName + "send requestto "+ guideName)
+    return fetch(`${USER_API}/${userName}/request/${guideName}`, {
+        method: "POST",
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+
+}
 export default {
-    register, login, logout, profile, findGuidesByLocation, findPublicProfile
+    register, login, logout, profile, findGuidesByLocation, findPublicProfile, requestGuide
 }

@@ -2,19 +2,35 @@ import React, {useEffect, useState} from 'react'
 import {Link, useHistory, useParams} from 'react-router-dom'
 import userService from '../../services/user-service'
 import "../users/profile-screen-style.css"
+import userConstructor from "../users/userConstructor";
 
 const PublicProfile = () => {
-    const username = useParams()
-    const [guide, setGuide] = useState([])
+    const {username} = useParams()
+    const [guide, setGuide] = useState({})
     useEffect(() => {
+        console.log("Find Guide Profile: "+username)
+
         userService.findPublicProfile(username)
-            .then((guide) => {
-                setGuide(guide)
+            .then((guideRES) => {
+                setGuide(guideRES)
             })
+        console.log("Find Guide Profile:"+ JSON.stringify(guide) + guide.username)
     }, [])
+
+
+    const request = () => {
+        let username = userConstructor.getName()
+        let guidename = guide.username
+        console.log("User:"+ username + "send request to "+ guidename)
+        userService.requestGuide(username, guidename)
+            .then(() => {
+            })
+    }
 
     return(
         <div className={"wbdv-profile-body"}>
+
+
             <div className="row mb-5">
                 <div className="col-8 col-md-10">
                 </div>
@@ -29,18 +45,18 @@ const PublicProfile = () => {
 
             <div className="container">
                 <div className="mb-3 row">
-                    <label htmlFor="staticEmail"
+                    <label htmlFor="email"
                            className="col-sm-2 col-form-label wbdv-profile-font">
-                        Username
+                        Guide Username
                     </label>
-                    <div className="col-sm-10 ">
-                        <input type="text"
+                    <div className="col-sm-10">
+                        <input type="email"
                                readOnly
                                className="form-control wbdv-profile-input"
-                               id="staticEmail"
                                value={guide.username}/>
                     </div>
                 </div>
+
 
                 <div className="mb-3 row">
                     <label htmlFor="email"
@@ -52,6 +68,16 @@ const PublicProfile = () => {
                                readOnly
                                className="form-control wbdv-profile-input"
                                value={guide.email}/>
+                    </div>
+                </div>
+                <div className="mb-3 row">
+                    <label className="col-sm-2 col-form-label"></label>
+                    <div className="col-sm-10">
+                        <a className="btn btn-primary btn-block"
+                           onClick={request}
+                           role="button">
+                            Request
+                        </a>
                     </div>
                 </div>
 

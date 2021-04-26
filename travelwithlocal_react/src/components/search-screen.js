@@ -95,7 +95,7 @@ const SearchScreen = () => {
                                             {/*poi.place_id does not work*/}
                                             {/*{JSON.stringify(poi.photos)}*/}
                                             {/*react: if map, give child key!!*/}
-                                            <Link to={`/details/${poi.name}/${poi.reference}/${poi.photos[0].photo_reference}`}>
+                                            <Link to={`/details/${searchLocation}/${poi.name}/${poi.reference}/${poi.photos[0].photo_reference}`}>
                                                 <i className={"search-result-text"}>{poi.name}</i>
                                             </Link>
                                         </li>
@@ -105,13 +105,13 @@ const SearchScreen = () => {
 
                         </ul>
                     </div>
+                    <h3>
+                        Recommended Guides
+                    </h3>
                     {
                         guides.length > 0 &&
                         <div className="col-4">
                             <div className="row">
-                                <h3>
-                                    Recommended Guides
-                                </h3>
                             </div>
                             <div className="row">
                                 {
