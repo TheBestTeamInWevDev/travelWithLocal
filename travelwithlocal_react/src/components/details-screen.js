@@ -39,24 +39,41 @@ const DetailsScreen = () => {
 
     return(
         <div className="detail-body">
-            <div className="wbdv-sticky-top">
-                <div className="row">
-                    <div className="col-1">
-                        <i onClick={() => history.goBack()} role={"btn"}
-                           className="detail-back-btn fas fa-times fa-2x "></i>
+            <div className="container">
+                {/*<div className="row">*/}
+                    <div>
+                        <Link to="../../../">
+                        <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
+                        </Link>
+
+                        <br/>
                     </div>
-                    <div className="col-3 detail-title-location">
-                        {location}
+
+                    <div className="d-none d-lg-block">
+                        <Link to="../../../login">
+                            <button type="button" className="btn btn-secondary float-right">Login</button>
+                        </Link>
+                        <Link >
+                            <button onClick={() => history.goBack()} type="button" className="btn btn-light float-right">Back</button>
+                        </Link>
                     </div>
-                    <div className="col">
-                            <p className={"detail-back-btn"}>Welcome {userStatus.getName()}</p>
+
+                    {/*<div className="col-1">*/}
+                    {/*    <i onClick={() => history.goBack()} role={"btn"}*/}
+                    {/*       className="detail-back-btn fas fa-times fa-2x "></i>*/}
+                    {/*</div>*/}
+                    <div className="col-6 detail-title-location" id="local_name">
+                        <h3>{location}</h3>
                     </div>
-                    <div className="col-1">
+                    {/*<div className="col">*/}
+                    {/*        <p className={"detail-back-btn"}>Welcome {userStatus.getName()}</p>*/}
+                    {/*</div>*/}
+                    <div className="col-2 fav_icon">
                         <i onClick={() => {SavePOIForTraveler();setSaved(true)}} role={"btn"}
                            className={`detail-back-btn ${saved?
                                'fas fa-star fa-2x' : 'far fa-star fa-2x'}`}></i>
                     </div>
-                </div>
+                {/*</div>*/}
             </div>
             <div className="wbdv-header-top col-sm-6">
 
