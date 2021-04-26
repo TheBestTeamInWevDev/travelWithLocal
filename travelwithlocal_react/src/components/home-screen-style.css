@@ -128,3 +128,160 @@
 #foodie_img:hover {
     transform: scale(1.2);
 }
+
+
+.vac_text{
+    color: gray;
+    margin: 0;
+    position: absolute;
+    top: 130%;
+    left: 30%;
+
+}
+
+#fly_icon{
+    font-size: 100px;
+    color: coral;
+    position: absolute;
+    top: -90%;
+    left: 40%;
+}
+
+#trip_icon{
+    font-size: 100px;
+    color: coral;
+    position: absolute;
+    top: 60%;
+    left: -10%;
+}
+
+#vaca_text{
+        font-size: 80px;
+
+}
+
+/*div.gallery{*/
+/*    !*font-size: 100px;*!*/
+/*    color: coral;*/
+/*    position: absolute;*/
+/*    top: 170%;*/
+/*    left: 15%;*/
+/*}*/
+.cla_gal_1 {
+    margin: 5px;
+    float: left;
+    /*width: 180px;*/
+    position: absolute;
+    top: 170%;
+
+}
+
+.cla_gal_2 {
+    margin: 5px;
+    float: left;
+    /*width: 180px;*/
+    position: absolute;
+    left: 33%;
+    top: 170%;
+
+}
+
+.cla_gal_3{
+    margin: 5px;
+    float: left;
+    /*width: 180px;*/
+    position: absolute;
+    left: 53%;
+    top: 170%;
+
+}
+
+.cla_gal_4{
+    margin: 5px;
+    float: left;
+    /*width: 180px;*/
+    position: absolute;
+    left: 70%;
+    top: 170%;
+
+}
+
+.cla_gal_5 {
+    margin: 5px;
+    float: left;
+    /*width: 180px;*/
+    position: absolute;
+    left: 70%;
+    top: 200%;
+
+}
+
+.cla_gal_6 {
+    margin: 5px;
+    float: left;
+    /*width: 180px;*/
+    position: absolute;
+    left: 53%;
+    top: 200%;
+
+}
+
+.cla_gal_7 {
+    margin: 5px;
+    float: left;
+    /*width: 180px;*/
+    position: absolute;
+    left: 35%;
+    top: 200%;
+
+}
+
+.cla_gal_8 {
+    margin: 5px;
+    float: left;
+    /*width: 180px;*/
+    position: absolute;
+    top: 200%;
+
+}
+
+#gallery_1{
+    border-radius: 50%;
+}
+
+#gallery_2{
+    border-radius: 50%;
+}
+
+#gallery_3{
+    border-radius: 50%;
+}
+
+#gallery_4{
+    border-radius: 50%;
+}
+
+#gallery_5{
+    border-radius: 50%;
+}
+
+#gallery_6{
+    border-radius: 50%;
+}
+
+#gallery_7{
+    border-radius: 50%;
+}
+
+#gallery_8{
+    border-radius: 50%;
+}
+
+.explore{
+    margin: 5px;
+    float: left;
+    /*width: 180px;*/
+    position: absolute;
+    top: 220%;
+    left: 50%;
+}
