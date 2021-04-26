@@ -1,14 +1,17 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory} from "react-router-dom"
 import poiService from "../services/poi-service"
+import userService from "../services/user-service"
 import "./search-screen-style.css"
 import user from "../components/users/userConstructor"
+import GuideCard from "./guides/guide-card";
 
 const SearchScreen = () => {
     const history = useHistory()
     const {location} = useParams()
     const [searchLocation, setSearchLocation] = useState(location)
     const [results, setResults] = useState({results:[]})
+    const [guides, setGuides] = useState([])
     useEffect(() => {
         setSearchLocation(location)
         findPOIByLocation(location)
@@ -19,6 +22,13 @@ const SearchScreen = () => {
         poiService.findPOIByLocation(location)
             .then((results) => {
                 setResults(results)
+            })
+    }
+
+    const findGuidesByLocation = (location) => {
+        userService.findGuidesByLocation(location)
+            .then((guides) => {
+                setGuides(guides)
             })
     }
 
@@ -42,7 +52,10 @@ const SearchScreen = () => {
                     </div>
                     <div className="col-1">
                         {/*<button onClick={() => {findPOIByLocation(searchLocation)}} className="fas fa-search fa-2x wbdv-nav-plus-logo">*/}
-                            <a onClick={() => {findPOIByLocation(searchLocation)}} className="fas fa-search fa-2x search-logo" role="button" ></a>
+                            <a onClick={() => {
+                                findPOIByLocation(searchLocation)
+                                findGuidesByLocation(searchLocation)
+                            }} className="fas fa-search fa-2x search-logo" role="button" ></a>
                         {/*</button>*/}
                     </div>
                     <div className="col-2">
@@ -70,25 +83,42 @@ const SearchScreen = () => {
             {/*}} className="btn btn-primary">*/}
             {/*    <a className="fas fa-search fa-2x wbdv-nav-plus-logo" role="button" ></a>*/}
             {/*</button>*/}
-            <div className={"wbdv-header-top"}>
-            <ul className=" list-group">
-                {
+            <div className="">
+                <div className="row wbdv-header-top">
+                    <div className="col-8">
+                        <ul className=" list-group">
+                            {
+                                results.results && results.results.map((poi, idx) =>{
+                                    return(
+                                        <li className="list-group-item" key={idx}>
+                                            {/*poi.place_id does not work*/}
+                                            {/*{JSON.stringify(poi.photos)}*/}
+                                            {/*react: if map, give child key!!*/}
+                                            <Link to={`/details/${poi.name}/${poi.reference}/${poi.photos[0].photo_reference}`}>
+                                                <i className={"search-result-text"}>{poi.name}</i>
+                                            </Link>
+                                        </li>
+                                    )
+                                })
+                            }
 
-                    results.results && results.results.map((poi, idx) =>{
-                        return(
-                            <li className="list-group-item" key={idx}>
-                                {/*poi.place_id does not work*/}
-                                {/*{JSON.stringify(poi.photos)}*/}
-                                {/*react: if map, give child key!!*/}
-                                <Link to={`/details/${poi.name}/${poi.reference}/${poi.photos[0].photo_reference}`}>
-                                    <i className={"search-result-text"}>{poi.name}</i>
-                                </Link>
-                            </li>
-                        )
-                    })
-                }
+                        </ul>
+                    </div>
+                    <div className="col-4">
+                        <div className="row">
+                            <h3>
+                                Recommended Guides
+                            </h3>
+                        </div>
+                        <div className="row">
+                            {
+                                guides.map(guide =>
+                                <GuideCard guide={guide}/> )
+                            }
+                        </div>
 
-            </ul>
+                    </div>
+                </div>
             </div>
         </div>
     )

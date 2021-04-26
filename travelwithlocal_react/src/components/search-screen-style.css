@@ -43,11 +43,11 @@
     /*background-color:#333333;*/
     position: fixed;
     font-size: 15px;
-    top:53px;
+    top:65px;
     width: 100%;
     z-index: 2;
     /*white-space: nowrap;*/
-    color:white;
+    /*color:white;*/
     font-weight:bold;
 }
 
