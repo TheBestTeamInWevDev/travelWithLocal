@@ -38,7 +38,7 @@ const DetailsScreen = () => {
 
 
     return(
-        <div className={"detail-body"}>
+        <div className="detail-body">
             <div className="wbdv-sticky-top">
                 <div className="row">
                     <div className="col-1">
@@ -58,14 +58,22 @@ const DetailsScreen = () => {
                     </div>
                 </div>
             </div>
-            <div className={"wbdv-header-top"}>
+            <div className="wbdv-header-top col-sm-6">
 
-                <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA`}/>
+                <img id="detail_img"
+                    src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA`}
+                    width="550" height="300"
+                />
                 <br/>
-                <p className={"detail-text"}>Weekday Hours: </p>
-                <ul>
-                    {place.result && place.result.opening_hours && place.result.opening_hours.weekday_text.map((el) => <li className={"detail-text"}>{el}</li> )}
-                    {place.result && !place.result.opening_hours && <div className={"detail-text"}>Currently Unavailable</div>}
+
+                <p id= "detail_content"className="detail-text">Weekday Hours: </p>
+                <ul id="hours" >
+
+                    {place.result && place.result.opening_hours && place.result.opening_hours.weekday_text.map((el) => <li id="hour" className={"detail-text"}>{el}</li> )}
+
+                    {place.result && !place.result.opening_hours && <div id="hour_unavailable" className={"detail-text"}>Currently Unavailable</div>}
+
+                    {/*{place.result && !place.result.opening_hours && <div className={"detail-text"}>Currently Unavailable</div>}*/}
                     {/*<li className={"detail-text"}>{place.result && place.result.opening_hours.weekday_text.split(',')}</li>*/}
                 </ul>
 
@@ -74,9 +82,10 @@ const DetailsScreen = () => {
                 {/*<p>{JSON.stringify(place.result)}</p>*/}
                 {/*<h1>{photoReference}</h1>*/}
                 {/*doesnt have a value yet, render before, first time*/}
-                <p className={"detail-text"}>Address: {place.result && place.result.formatted_address}</p>
+                <p id="unavailable" className={"detail-text"}>Address: {place.result && place.result.formatted_address}</p>
                 {/*<p>{place.result.photos}</p>*/}
 
+                {/*<img id="bg_img" src="https://i.ibb.co/PWMSWF8/pexels-miguel-padri-n-255379.jpg" alt="pexels-miguel-padri-n-255379" border="0"/>*/}
             </div>
 
         </div>
