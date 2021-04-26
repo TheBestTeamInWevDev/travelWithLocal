@@ -5,6 +5,7 @@ import userConstructor from "./userConstructor";
 import "./profile-screen-style.css"
 
 const Profile = () => {
+    const [credentials, setCredentials] = useState({username: '', password: '', email: '', role: 'TRAVELLER'})
     const [currentUser, setCurrentUser] = useState({username: '', password: ''})
     useEffect(() => {
         userService.profile()
@@ -51,10 +52,14 @@ const Profile = () => {
                             <i className="left_icon fas fa-smile-wink"></i>
                         </label>
                         <div className="col-sm-10">
-                            <input readOnly
-
-                                    id="role" className="form-control-2"
-                                />
+                        <select onChange={(e) =>
+                        {setCredentials({...credentials, role: e.target.value})}}
+                                placeholder={credentials.role}
+                                value={currentUser.role}
+                                className="form-control wbdv-profile-input">
+                            <option value={"TRAVELLER"}>Traveller</option>
+                            <option value={"LOCALGUIDE"}>Local Guide</option>
+                        </select>
                         </div>
                     </div>
 
@@ -64,7 +69,6 @@ const Profile = () => {
                         </label>
                         <div className="col-sm-10">
                             <input id="gender" className="form-control-2"
-
                             />
                         </div>
                     </div>
@@ -75,8 +79,9 @@ const Profile = () => {
                         </label>
                         <div className="col-sm-10">
                             <input type="text"
-
-                                   placeholder="username"
+                                   readOnly
+                                   placeholder={currentUser.username}
+                                   value={credentials.username}
                                    className="form-control-2"
                                    id="username"/>
                         </div>
@@ -88,10 +93,28 @@ const Profile = () => {
                         </label>
                         <div className="col-sm-10">
                             <input type="text"
+                               onChange={(e) => {setCredentials({...credentials, email: e.target.value})}}
+                               placeholder={currentUser.email}
+                               value={credentials.email}
+                               className="form-control-2"
+                               placeholder="email"
+                               id="email"/>
+                        </div>
+                    </div>
 
-                                   className="form-control-2"
-                                   placeholder="email"
-                                   id="email"/>
+                    <div className="mb-3 row">
+                        <label htmlFor="password"
+                               className="col-sm-2 col-form-label wbdv-profile-font">
+                            password
+                        </label>
+                        <div className="col-sm-10">
+                            <input
+                                // type="password"
+                                   className="form-control wbdv-profile-input"
+                                   onChange={(e) => {setCredentials({...credentials, username: e.target.value})}}
+                                   placeholder={currentUser.password}
+                                   value={credentials.password}
+                            />
                         </div>
                     </div>
 
@@ -102,16 +125,11 @@ const Profile = () => {
                         <div className="col-sm-10">
 
                             <input type="text"
-
                                    className="form-control-2"
                                    placeholder="favorite place"
                                    id="favorite place"/>
                         </div>
                     </div>
-
-
-
-
 
                 </div>
 
