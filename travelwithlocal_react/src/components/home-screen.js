@@ -1,8 +1,12 @@
 import React from 'react'
 import {Link, Route} from "react-router-dom"
 import "./home-screen-style.css"
+
+
+
 const HomeScreen = () => {
     return(
+
         <div className="container">
             <div>
                 <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
@@ -63,19 +67,90 @@ const HomeScreen = () => {
                             <h6 id="foodie">Foodie Explore</h6>
                         </Link>
                     </div>
-
-
-
                 </div>
 
             </div>
-            {/*<div className="col-sm-6">*/}
-            {/*    */}
-            {/*        <input type="text" placeholder="Search..">*/}
+            <br/>
+
+            {/*<div className="row">*/}
+                <div className="col vac_text">
+                    <i id="trip_icon"className="fas fa-route"></i>
+                    <i id="fly_icon" className="fas fa-plane-departure"></i>
+                    <h1 id="vaca_text">Vacation mood on...</h1>
+                </div>
             {/*</div>*/}
+            <br/>
+
+
+            <div className="cla_gal_1">
+                <Link to = "./search/yellow%20stone">
+                    <img id="gallery_1" className="image" src="https://i.ibb.co/xqM5s6K/IMG-20190609-120959.jpg" width="200" height="200"/>
+                </Link>
+                {/*<div className="overlay">*/}
+                {/*    <div className="text">John Doe</div>*/}
+                {/*</div>*/}
+            </div>
+
+            <div className="cla_gal_2">
+                <Link to = "./search/zoom">
+                    <img id="gallery_2" src="https://i.ibb.co/mC04th6/IMG-20190609-121623.jpg" width="200" height="200"/>
+                </Link>
+                {/*<div className="desc">Add a description of the image here</div>*/}
+            </div>
+
+            <div className="cla_gal_3">
+                <Link to = "./search/park">
+                    <img id="gallery_3" src="https://i.ibb.co/X3RFgfX/IMG-20190609-124957.jpg" width="200" height="200"/>
+                </Link>
+                {/*<div className="desc">Add a description of the image here</div>*/}
+            </div>
+
+            <div className="cla_gal_4">
+                <Link to = "./search/lake">
+                    <img id="gallery_4" src="https://i.ibb.co/d7r504F/IMG-8834.jpg"  width="200" height="200" />
+                </Link>
+                {/*<div className="desc">Add a description of the image here</div>*/}
+            </div>
+
+            {/*<div className="cla_gal_5">*/}
+            {/*    <a target="_blank" href="img_lights.jpg">*/}
+            {/*        <img id="gallery_5" src="https://i.ibb.co/8rXXJz9/image.png"  width="200" height="200"/>*/}
+            {/*    </a>*/}
+            {/*    /!*<div className="desc">Add a description of the image here</div>*!/*/}
+            {/*</div>*/}
+
+            {/*<div className="cla_gal_6">*/}
+            {/*    <a target="_blank" href="img_mountains.jpg">*/}
+            {/*        <img id="gallery_6" src="https://i.ibb.co/9HL5GPQ/image.png"   width="200" height="200" />*/}
+            {/*    </a>*/}
+            {/*    /!*<div className="desc">Add a description of the image here</div>*!/*/}
+            {/*</div>*/}
+
+            {/*<div className="cla_gal_7">*/}
+            {/*    <a target="_blank" href="img_mountains.jpg">*/}
+            {/*        <img id="gallery_7" src="https://i.ibb.co/4Nv0TvB/image.png"   width="200" height="200" />*/}
+            {/*    </a>*/}
+            {/*    /!*<div className="desc">Add a description of the image here</div>*!/*/}
+            {/*</div>*/}
+
+            {/*<div className="cla_gal_8">*/}
+            {/*    <a target="_blank" href="img_mountains.jpg">*/}
+            {/*        <img id="gallery_8"  src="https://i.ibb.co/HpCs2vt/image.png"  width="200" height="200" />*/}
+            {/*    </a>*/}
+            {/*    /!*<div className="desc">Add a description of the image here</div>*!/*/}
+            {/*</div>*/}
+
+            <div className="explore">
+                <p>Explore More</p>
+                <Link to="/search">
+                    <button className="btn btn-secondary">More</button>
+                </Link>
+            </div>
+
 
         </div>
     )
 }
+
 
 export default HomeScreen

@@ -1,29 +1,61 @@
 
-.wbdv-profile-body{
-    background-color:#4d4d4d;
-}
-.wbdv-profile-title{
-    color:white;
+/*.wbdv-profile-body{*/
+/*    background-color:#4d4d4d;*/
+/*}*/
+/*.wbdv-profile-title{*/
+/*    color:white;*/
+/*}*/
+
+/*.wbdv-profile-font{*/
+/*    font-size:20px;*/
+/*    color:white;*/
+/*}*/
+
+/*.wbdv-profile-input{*/
+/*    background-color:#cccccc;*/
+/*}*/
+
+
+/*.wbdv-btn-update{*/
+/*    background-color:#e67300;*/
+/*    border:0px;*/
+/*    color:white;*/
+/*}*/
+
+/*.wbdv-btn-logout{*/
+/*    background-color:#e67300;*/
+/*    border:0px;*/
+/*    color:white;*/
+/*}*/
+
+.left-cata{
+    text-align: right;
+    color: coral;
+    position: relative;
+    margin-top: 20px;
 }
 
-.wbdv-profile-font{
-    font-size:20px;
-    color:white;
+#welcome{
+    color: coral;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 8%;
 }
 
-.wbdv-profile-input{
-    background-color:#cccccc;
+#slogan {
+    color: gray;
+    margin: 0;
+    position: absolute;
+    top: 70%;
+    left: 15%;
+
 }
+#profile{
 
-
-.wbdv-btn-update{
-    background-color:#e67300;
-    border:0px;
-    color:white;
-}
-
-.wbdv-btn-logout{
-    background-color:#e67300;
-    border:0px;
-    color:white;
+    font-size: 100px;
+    color: grey;
+    position: absolute;
+    top: 5%;
+    left: 30%;
 }

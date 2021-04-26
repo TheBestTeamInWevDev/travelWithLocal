@@ -66,10 +66,27 @@ const findPublicProfile = (username) => {
         .then(response => response.json())
 }
 
+
 const requestGuide = (userName, guideName) => {
     console.log("API User:"+ userName + "send requestto "+ guideName)
     return fetch(`${USER_API}/${userName}/request/${guideName}`, {
         method: "POST",
+       headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json())}
+
+
+const update = (credentials) => {
+    console.log("Update Service: UserName: "+ credentials.username
+        + " email: " + credentials.email
+        + " Password: " +credentials.password
+        + " role: "+ credentials.role)
+    return fetch(`${USER_API}/update`, {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(credentials),
         headers: {
             'content-type': 'application/json'
         }
@@ -77,6 +94,9 @@ const requestGuide = (userName, guideName) => {
         .then(response => response.json())
 
 }
+
+
 export default {
-    register, login, logout, profile, findGuidesByLocation, findPublicProfile, requestGuide
+    register, login, logout, update, profile, findGuidesByLocation, findPublicProfile, requestGuide
+
 }
