@@ -22,87 +22,124 @@ const Login = () => {
             })
     }
 
-    return(
-        <div className={"wbdv-sign-in-body"}>
-            {/*<h1>Login</h1>*/}
-            {/*<input*/}
-            {/*    value={credentials.username}*/}
-            {/*    onChange={(e) => {setCredentials({...credentials, username: e.target.value})}}*/}
-            {/*    className="form-control"*/}
-            {/*    placeholder="username"/>*/}
-            {/*<input*/}
-            {/*    value={credentials.password}*/}
-            {/*    onChange={(e) => {setCredentials({...credentials, password: e.target.value})}}*/}
-            {/*    className="form-control"*/}
-            {/*    placeholder="password"/>*/}
-            {/*<button*/}
-            {/*    onClick={login}*/}
-            {/*    className="btn btn-primary">*/}
-            {/*    Login*/}
-            {/*</button>*/}
-            {/*<Link to="/register">*/}
-            {/*    Register*/}
-            {/*</Link>*/}
+
+    return (
 
             <div className="container">
-                <h1 className="wbdv-sign-in-title">Sign In</h1>
+                <div>
+                    <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
+                    <br/>
+                </div>
+
+                <div className="d-none d-lg-block">
+                    <Link to="./">
+                        <button type="button" className="btn btn-secondary float-right">Home</button>
+                    </Link>
+                    <Link to="./register">
+                        <button type="button" className="btn btn-light float-right">Register</button>
+                    </Link>
+                </div>
+
+
+                <h3 id="welcome_back">Welcome back! Please login to your account</h3>
+                <br/>
+
                 <form>
-                    <div className="form-group row">
-                        <label htmlFor="username" className="col-sm-2 col-form-label wbdv-username-font">
-                            Username </label>
-                        <div className="col-sm-10">
-                            {/*<input className="form-control wbdv-username-input"*/}
-                            {/*       id="username"*/}
-                            {/*       placeholder="Alice"/>*/}
-                            <input
-                                value={credentials.username}
-                                onChange={(e) => {setCredentials({...credentials, username: e.target.value})}}
-                                className="form-control wbdv-username-input"
-                                placeholder="username"/>
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="password" className="col-sm-2 col-form-label wbdv-password-font">
-                            Password </label>
-                        <div className="col-sm-10">
-                            {/*<input type="password" className="form-control wbdv-password-input"*/}
-                            {/*       id="password" placeholder="123qwe#$%"/>*/}
-                            <input
-                                type="password"
-                                value={credentials.password}
-                                onChange={(e) => {setCredentials({...credentials, password: e.target.value})}}
-                                className="form-control wbdv-password-input"
-                                placeholder="password"/>
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label className="col-sm-2 col-form-label"></label>
-                        <div className="col-sm-10">
-                            <a className="btn btn-block wbdv-btn-login"
-                               onClick={login} role="button">
-                                Sign in
-                            </a>
-                            <div className="row">
-                                <div className="col-4">
-                                    <a className="wbdv-forget-label" href="#">Forgot Password?</a>
-                                </div>
-                                <div className="col-4" align="center">
-                                    <Link className="wbdv-cancel-label" to="/">
-                                        Cancel
-                                    </Link>
-                                </div>
-                                <div className="col-4 ">
-                                    <Link className="float-right wbdv-signup-label" to="/register">
-                                        Sign up
-                                    </Link>
-                                </div>
+                <div className="form-group row">
+                    <div className="col-sm-6">
+                        <div className="mb-3 row">
+                            <label htmlFor="role">
+                                <i className="left_icon fas fa-smile-wink"></i>
+                            </label>
+                            <div className="col-sm-10">
+                                <select id="role" className="form-control-2">
+                                    <option disabled>select your role</option>
+                                    <option>traveler</option>
+                                    <option>local</option>
+                                </select>
                             </div>
                         </div>
+
+                        <div className="mb-3 row form-group">
+                            <label htmlFor="username">
+                                <i className="left_icon fas fa-user"></i>
+                            </label>
+                            <div className="col-sm-10">
+                                <input type="text"
+                                       value={credentials.username}
+                                       onChange={(e) => {setCredentials({...credentials, username: e.target.value})}}
+                                       className="form-control-2"
+                                       id="username"
+                                       placeholder="enter your username"/>
+                            </div>
+                        </div>
+
+                        <div className="mb-3 row">
+                            <label htmlFor="inputPassword">
+                                <i className="left_icon fas fa-unlock"></i>
+                            </label>
+                            <div className="col-sm-10">
+                                <input type="password"
+                                       value={credentials.password}
+                                       onChange={(e) => {setCredentials({...credentials, password: e.target.value})}}
+                                       className="form-control-2"
+                                       placeholder="password"
+                                       id="inputPassword"/>
+                            </div>
+                        </div>
+
+                        <div className="mb-3 row">
+                            {/*<label*/}
+                            {/*    className="col-sm-2 col-form-label">*/}
+                            {/*</label>*/}
+                            <div className="col-sm-10">
+                                <a className="signup_btn btn btn-block"
+                                   onClick={login} role="button">
+                                    Login in
+                                </a>
+                            </div>
+                        </div>
+                        <div className="mb-3 row">
+                            {/*<label*/}
+                            {/*    className="col-sm-2 col-form-label">*/}
+                            {/*</label>*/}
+                            <div className="col-sm-10">
+                                <a className="cancel_btn btn btn-block"
+                                   href="./">
+                                    Cancel
+                                </a>
+                            </div>
+                        </div>
+
+                        <div className="mb-3 row">
+                            {/*<label*/}
+                            {/*    className="col-sm-2 col-form-label">*/}
+                            {/*</label>*/}
+                            <div className="col-sm-10">
+                                <a className="float-left" href="#">Forgot Password?</a>
+                                <a className="float-right" href="./register">Sign Up</a>
+                            </div>
+                        </div>
+
+
+
                     </div>
+                    <div className="col-sm-6">
+                        <img id= "login_photo"
+                             src="https://i.ibb.co/Bcw990h/67783ab4b9ad6eddc23d8d95c65409e4.jpg"
+                             alt="login photo"
+                             width="500" height="600"
+                        />
+                    </div>
+
+                </div>
+
                 </form>
+
             </div>
-        </div>
-    )
+
+        )
+
 }
 
 export default Login;
