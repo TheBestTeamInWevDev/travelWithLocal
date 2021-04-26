@@ -108,13 +108,15 @@ const SearchScreen = () => {
                         {
                             results.results && results.results.map((poi, idx) =>{
                                 return(
+                                    poi.name && poi.reference && poi.photos &&
                                     <li className="list-group-item" key={idx}>
                                         {/*poi.place_id does not work*/}
                                         {/*{JSON.stringify(poi.photos)}*/}
                                         {/*react: if map, give child key!!*/}
-                                        <Link to={`/details/${searchLocation}/${poi.name}/${poi.reference}/${poi.photos[0].photo_reference}`}>
-                                            <i className={"search-result-text"}>{poi.name}</i>
-                                        </Link>
+                                            <Link to={`/details/${searchLocation}/${poi.name}/${poi.reference}/${poi.photos[0].photo_reference}`}>
+                                                <i className={"search-result-text"}>{poi.name}</i>
+                                            </Link>
+
                                     </li>
                                 )
                             })
