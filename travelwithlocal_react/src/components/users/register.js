@@ -6,7 +6,7 @@ import userConstructor from "./userConstructor";
 import "./register-screen-style.css"
 
 const Register = () => {
-    const [credentials, setCredentials] = useState({username: '', password: '', email: '', role: 'TRAVELLER'})
+    const [credentials, setCredentials] = useState({username: '', password: '', email: '', role: 'TRAVELLER', location: ''})
     const history = useHistory()
     const register = () => {
         userService.register(credentials)
@@ -92,7 +92,30 @@ const Register = () => {
                                    id="username"/>
                         </div>
                     </div>
+                    {
+                        credentials.role === "LOCALGUIDE" &&
+                        <div className="form-group row">
+                            <label htmlFor="username" className="col-sm-2 col-form-label wbdv-username-font">
+                                Location </label>
+                            <div className="col-sm-10">
+                                <input
+                                    value={credentials.location}
+                                    onChange={(e) => {
+                                        setCredentials({...credentials, location: e.target.value})
+                                    }}
+                                    className="form-control"
+                                    placeholder="location"/>
+                            </div>
+                        </div>
+                    }
 
+{/*//*/}
+{/*//                     }*/}
+{/*//*/}
+{/*//                     <div className="form-group row">*/}
+{/*//                         <label htmlFor="password" className="col-sm-2 col-form-label wbdv-password-font">*/}
+{/*//                             Password </label>*/}
+{/*//*/}
                     <div className="mb-3 row">
                         <label htmlFor="email" >
                             <i className=" left_icon fas fa-envelope"></i>
