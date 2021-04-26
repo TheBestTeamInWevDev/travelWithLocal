@@ -5,6 +5,7 @@ import userConstructor from "./userConstructor";
 import "./profile-screen-style.css"
 
 const Profile = () => {
+    const [credentials, setCredentials] = useState({username: '', password: '', email: '', role: 'TRAVELLER'})
     const [currentUser, setCurrentUser] = useState({username: '', password: ''})
     useEffect(() => {
         userService.profile()
