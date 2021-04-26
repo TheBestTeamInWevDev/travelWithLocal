@@ -65,6 +65,22 @@ const findPublicProfile = (username) => {
         .then(response => response.json())
 }
 
+const update = (credentials) => {
+    console.log("Update Service: UserName: "+ credentials.username
+        + " email: " + credentials.email
+        + " Password: " +credentials.password
+        + " role: "+ credentials.role)
+    return fetch(`${USER_API}/update`, {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(credentials),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+}
+
 export default {
-    register, login, logout, profile, findGuidesByLocation, findPublicProfile
+    register, login, logout, profile, update, findGuidesByLocation, findPublicProfile
 }
