@@ -34,16 +34,17 @@ const SearchScreen = () => {
     }
 
     return(
-        <div>
+        <div className="container">
 
-            <div className="wbdv-sticky-top">
+            <div >
                 <div className="row" >
-                    <div className="col-1">
-                        <i className="fas fa-bars fa-2x wbdv-nav-hbg-logo"></i>
-                    </div>
-                    <div className="col-2 d-none d-lg-block wbdv-nav-title">
-                        Travel With Locals
-                    </div>
+                    {/*<div className="col-1">*/}
+                    {/*    <i className="fas fa-bars fa-2x wbdv-nav-hbg-logo"></i>*/}
+                    {/*</div>*/}
+                    {/*<div className="col-2 d-none d-lg-block wbdv-nav-title">*/}
+                    {/*    Travel With Locals*/}
+                    {/*</div>*/}
+                    <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
                     <div className="col-5">
                         <input value={searchLocation}
                                onChange={(event) => {
@@ -62,13 +63,20 @@ const SearchScreen = () => {
                     <div className="col-2">
                         <p>Welcome {user.getName()}</p>
                     </div>
+
                     <div className="col-1 float-right">
                             <Link to="/profile">
                                 <a className="btn btn-block btn-info">
                                     Profile
                                 </a>
                             </Link>
+                            {/*<Link to="/">*/}
+                            {/*    <a className="btn btn-block btn-info">*/}
+                            {/*        Home*/}
+                            {/*    </a>*/}
+                            {/*</Link>*/}
                     </div>
+
                     {console.log("SearchScreen Current User: " + user.getName())}
 
                 </div>
