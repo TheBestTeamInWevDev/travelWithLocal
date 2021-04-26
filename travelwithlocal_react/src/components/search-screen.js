@@ -35,7 +35,7 @@ const SearchScreen = () => {
 
     return(
         <div className="container">
-<<<<<<< HEAD
+
 
             <div >
                 <div className="row" >
@@ -47,14 +47,13 @@ const SearchScreen = () => {
                     {/*</div>*/}
                     <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
                     <div className="col-5">
-=======
+
                 <div className="col row wbdv-sticky-top">
                     <div className="d-none d-lg-block">
                         <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
                         <br/>
                     </div>
                     <div className="col-6 col-lg-5">
->>>>>>> 0b038bf90658b180694ad45a61d04923b545266e
                         <input value={searchLocation}
                                onChange={(event) => {
                                    setSearchLocation(event.target.value)
@@ -72,12 +71,9 @@ const SearchScreen = () => {
                     <div className="col-lg-2 d-none d-lg-block">
                         <p>Welcome {user.getName()}</p>
                     </div>
-<<<<<<< HEAD
 
                     <div className="col-1 float-right">
-=======
                     <div className="col-3 col-lg-1 float-right">
->>>>>>> 0b038bf90658b180694ad45a61d04923b545266e
                             <Link to="/profile">
                                 <button type="button" className="btn btn-light float-right">Profile</button>
                             </Link>
