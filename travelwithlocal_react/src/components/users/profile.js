@@ -20,9 +20,9 @@ const Profile = () => {
 
     const history = useHistory()
     const logout = () => {
-        userConstructor.setName("")
-        userConstructor.setUserStatus(0)
-        userConstructor.setUserType("")
+        // userConstructor.setName("")
+        // userConstructor.setUserStatus(0)
+        // userConstructor.setUserType("")
         // nav back to home
         setCredentials({username: '', password: ''})
         userService.logout().
@@ -38,8 +38,11 @@ const Profile = () => {
                 // userConstructor.setUserStatus(1)
                 // userConstructor.setUserType(credentials.role)
                 // setCurrentUser(credentials)
+
                 setCredentials(credentials)
-                history.push("/profile")
+
+                console.log(JSON.stringify(credentials))
+                // history.push("/profile")
             })
     }
 
