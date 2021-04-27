@@ -21,32 +21,32 @@ const DetailsScreen = () => {
         console.log("Details-screen")
         findPlaceByPoiID()
         findLocalsByLocation()
+        userService.profile()
+            .then((user) => {
+                setUser(user)
+            })
         userService.checkFavouritePlace(poiID)
-            .then((saved) => {
-                console.log("Favourite Place saved? " + saved)
-                if (saved === "1") {
+            .then((res) => {
+                console.log("Favourite Place saved? " + res)
+                if (res != null && res !== 0) {
                     setSaved(true)
                 } else {
                     setSaved(false)
                 }
-                userService.profile()
-                    .then((user) => {
-                        setUser(user)
-                    })
-            }, [])
-    })
+            })
+    }, [])
+
 
         const checkSavedMarket = () => {
             userService.checkFavouritePlace(poiID)
-                .then((saved) => {
-                    if (saved === "1") {
+                .then((res) => {
+                    if (res != null && res !== 0) {
                         setSaved(true)
                     } else {
                         setSaved(false)
                     }
                 })
         }
-
         const findPlaceByPoiID = () => {
             console.log("findPlaceByPoiID")
             poiService.findPlaceByPoiID(poiID)
@@ -74,7 +74,9 @@ const DetailsScreen = () => {
                 username: user.username
             })
             poiService.SavePOIForTraveler(poiInfo)
-                .then()
+                .then((res) => {
+                    checkSavedMarket();
+                })
         }
 
         return (
@@ -116,15 +118,7 @@ const DetailsScreen = () => {
                     <div className="col-6 detail-title-location" id="local_name">
                         <h3>{location}</h3>
                     </div>
-                    <div className="col-2 fav_icon">
-                        <i onClick={() => {
-                            SavePOIForTraveler();
-                            checkSavedMarket()
-                        }} role={"btn"}
 
-                           className={`detail-back-btn ${saved ?
-                               'fas fa-star fa-2x' : 'far fa-star fa-2x'}`}></i>
-                    </div>
                     {/*</div>*/}
                 </div>
                 <div className="wbdv-header-top col-sm-6">
@@ -162,6 +156,14 @@ const DetailsScreen = () => {
                             </div>
                         </div>
                     }
+                    <div className="col-2 fav_icon">
+                        <i onClick={() => {
+                            SavePOIForTraveler();
+                        }} role={"btn"}
+
+                           className={`detail-back-btn ${saved ?
+                               'fas fa-star fa-2x' : 'far fa-star fa-2x'}`}></i>
+                    </div>
 
                 </div>
 

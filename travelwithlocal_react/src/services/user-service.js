@@ -104,8 +104,7 @@ const deleteFavouritePlace = (poiID) => {
         headers: {
             'content-type': 'application/json'
         }
-    })
-        .then(response => response.json())
+    }).then(response => response.json())
 }
 
 const checkFavouritePlace = (poiID) => {
@@ -116,10 +115,7 @@ const checkFavouritePlace = (poiID) => {
         headers: {
             'content-type': 'application/json'
         }
-    })
-        .then((response) => {response.json();
-            console.log("checkFavouritePlace response: " + JSON.stringify(response))
-        })
+    }).then(response => response.json())
 }
 
 

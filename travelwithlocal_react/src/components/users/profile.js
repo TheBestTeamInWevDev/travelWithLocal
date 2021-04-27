@@ -150,7 +150,7 @@ const Profile = () => {
                         </div>
                     </div>
                     {
-                        currentUser.role === "LOCALGUIDE" &&
+                        credentials.role === "LOCALGUIDE" &&
                         <div className="mb-3 row">
                             <label htmlFor="email"
                                    className="col-sm-2 col-form-label wbdv-profile-font">
@@ -159,8 +159,8 @@ const Profile = () => {
                             <div className="col-sm-10">
 
                                 <ul>
-                                    {currentUser.listOfRequests && currentUser.listOfRequests.map((el) => <li className={"wbdv-profile-input"}>{el.username}</li> )}
-                                    {!currentUser.listOfRequests && <div className={"wbdv-profile-input"}>Currently Unavailable</div>}
+                                    {credentials.listOfRequests && credentials.listOfRequests.map((el) => <li className={"wbdv-profile-input"}>{el.username}</li> )}
+                                    {!credentials.listOfRequests && <div className={"wbdv-profile-input"}>Currently Unavailable</div>}
                                 </ul>
                             </div>
                         </div>
