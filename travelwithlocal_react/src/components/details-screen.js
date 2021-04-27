@@ -10,7 +10,7 @@ const proxyurl = "https://blooming-retreat-25143.herokuapp.com/";
 
 
 const DetailsScreen = () => {
-    const [poiInfo, setPoiInfo] = useState({name: '', poiID: '', location: '', imageURL: '', username: ''})
+    const [poiInfo, setPoiInfo] = useState({address: '', poiID: '', location: '', imageURL: '', username: ''})
     const [saved, setSaved] = useState(false)
     const {searchLocation, location, poiID, photoReference} = useParams()
     const history = useHistory()
