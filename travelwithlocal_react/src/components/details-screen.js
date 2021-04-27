@@ -16,11 +16,15 @@ const DetailsScreen = () => {
     const history = useHistory()
     const [place, setPlace] = useState({})
     const [guides, setGuides] = useState([])
-
+    const [user, setUser] = useState([])
     useEffect(() => {
         console.log("Details-screen")
         findPlaceByPoiID()
         findLocalsByLocation()
+        userService.profile()
+            .then((user) => {
+                setUser(user)
+            })
     }, [])
 
     const findPlaceByPoiID = () => {
@@ -48,7 +52,7 @@ const DetailsScreen = () => {
             poiID: poiID,
             address: place.result.formatted_address,
             imageURL: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA`,
-            username: userStatus.getName()})
+            username: user.username})
         poiService.SavePOIForTraveler(poiInfo)
             .then()
     }
@@ -67,9 +71,18 @@ const DetailsScreen = () => {
                     </div>
 
                     <div className="d-none d-lg-block">
-                        <Link to="../../../login">
-                            <button type="button" className="btn btn-secondary float-right">Login</button>
-                        </Link>
+                        {
+                            !user.username &&
+                            <Link to="../../../../login">
+                                <button type="button" className="btn btn-secondary float-right">Login</button>
+                            </Link>
+                        }
+                        {
+                            user.username &&
+                                <Link to="../../../../profile">
+                                    <button type="button" className="btn btn-secondary float-right">Profile</button>
+                                </Link>
+                        }
                         <Link >
                             <button onClick={() => history.goBack()} type="button" className="btn btn-light float-right">Back</button>
                         </Link>
