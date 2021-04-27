@@ -112,19 +112,24 @@ const Profile = () => {
                     </div>
 
                     <div className="mb-3 row">
-                        <label htmlFor="email"
-                               className="col-sm-2 col-form-label wbdv-profile-font">
+                        <label className="col-sm-2 col-form-label wbdv-profile-font">
                             User Type
                         </label>
                         <div className="col-sm-10">
-                            <select onChange={(e) =>
-                            {setCredentials({...credentials, role: e.target.value})}}
-                                    // placeholder={credentials.role}
-                                    value={credentials.role}
-                                    className="form-control wbdv-profile-input">
-                                <option value={"TRAVELLER"}>Traveller</option>
-                                <option value={"LOCALGUIDE"}>Local Guide</option>
-                            </select>
+                            <input
+                                readOnly
+                                className="form-control wbdv-profile-input"
+                                value={credentials.role}
+                            />
+                            {/*<select */}
+                            {/*    onChange={(e) =>*/}
+                            {/*{setCredentials({...credentials, role: e.target.value})}}*/}
+                            {/*        // placeholder={credentials.role}*/}
+                            {/*        value={credentials.role}*/}
+                            {/*        className="form-control wbdv-profile-input">*/}
+                            {/*    <option value={"TRAVELLER"}>Traveller</option>*/}
+                            {/*    <option value={"LOCALGUIDE"}>Local Guide</option>*/}
+                            {/*</select>*/}
                         </div>
                     </div>
 
