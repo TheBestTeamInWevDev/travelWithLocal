@@ -17,7 +17,7 @@ const Login = () => {
                     userConstructor.setName(credentials.username)
                     userConstructor.setUserStatus(1)
                     userConstructor.setUserType(credentials.role)
-                    history.push("/search")
+                    history.goBack()
                 }
             })
     }
