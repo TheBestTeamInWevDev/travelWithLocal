@@ -15,8 +15,8 @@
 .detail-title-location {
     font-weight: bold;
     font-size: 24px;
-    padding-left: 5px;
-    color: White;
+    padding-left: 30px;
+    /*color: White;*/
     display: inline-block;
 
 }

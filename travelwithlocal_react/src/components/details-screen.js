@@ -50,7 +50,7 @@ const DetailsScreen = () => {
         setPoiInfo({
             location: location,
             poiID: poiID,
-            address: place.result.formatted_address,
+            address: place.result && place.result.formatted_address,
             imageURL: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA`,
             username: user.username})
         poiService.SavePOIForTraveler(poiInfo)
@@ -60,40 +60,52 @@ const DetailsScreen = () => {
     return(
         <div className="detail-body">
             <div className="container">
-                {/*<div className="row">*/}
-                    <div>
-                        <Link to="../../../">
-                        <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
-                        </Link>
-
-                        <br/>
-                    </div>
-
-                    <div className="d-none d-lg-block">
-                        {
-                            !user.username &&
-                            <Link to="../../../../login">
-                                <button type="button" className="btn btn-secondary float-right">Login</button>
+                    <div className="row">
+                        <div className="col-6">
+                            <Link to="../../../../">
+                                <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
                             </Link>
-                        }
-                        {
-                            user.username &&
+
+                            <br/>
+                        </div>
+                        <div className="col-6 mt-2">
+                            {
+                                !user.username &&
+                                <Link to="../../../../login">
+                                    <button type="button" className="btn btn-secondary float-right">Login</button>
+                                </Link>
+                            }
+                            {
+                                user.username &&
                                 <Link to="../../../../profile">
                                     <button type="button" className="btn btn-secondary float-right">Profile</button>
                                 </Link>
-                        }
-                        <Link >
-                            <button onClick={() => history.goBack()} type="button" className="btn btn-light float-right">Back</button>
-                        </Link>
+                            }
+                            <Link >
+                                <button onClick={() => history.goBack()} type="button" className="btn btn-light float-right">Back</button>
+                            </Link>
+                        </div>
                     </div>
 
+
+                    <div className="row">
+                        <div className="col-10 col-sm-11 detail-title-location" id="local_name">
+                            <h3>{location}</h3>
+                        </div>
+                        <div className="col-2 col-sm-1 float-right">
+                            {console.log("before onClick")}
+                            <i onClick={() => {SavePOIForTraveler();
+                                console.log("in onClick" + saved)
+                                setSaved(true)}} role={"btn"}
+                               className={`detail-back-btn ${saved?
+                                   'fas fa-star fa-2x' : 'far fa-star fa-2x'}`}></i>
+                        </div>
+                    </div>
                     {/*<div className="col-1">*/}
                     {/*    <i onClick={() => history.goBack()} role={"btn"}*/}
                     {/*       className="detail-back-btn fas fa-times fa-2x "></i>*/}
                     {/*</div>*/}
-                    <div className="col-6 detail-title-location" id="local_name">
-                        <h3>{location}</h3>
-                    </div>
+
                     {/*<div className="col">*/}
                     {/*        <p className={"detail-back-btn"}>Welcome {userStatus.getName()}</p>*/}
                     {/*</div>*/}
@@ -108,12 +120,10 @@ const DetailsScreen = () => {
                     {/*       className={`detail-back-btn ${saved ?*/}
                     {/*           'fas fa-star fa-2x' : 'far fa-star fa-2x'}`}></i>*/}
                     {/*</div>*/}
-
-
-
                 {/*</div>*/}
+
             </div>
-            <div className="wbdv-header-top col-sm-6">
+            <div className="col-sm-6">
 
                 <img id="detail_img"
                     src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA`}
@@ -121,20 +131,24 @@ const DetailsScreen = () => {
                 />
                 <br/>
                 {/*put save star here so that it will work*/}
-                <div className="col-1">
-                    {console.log("before onClick")}
-                    <i onClick={() => {SavePOIForTraveler();
-                        console.log("in onClick" + saved)
-                        setSaved(true)}} role={"btn"}
-                       className={`detail-back-btn ${saved?
-                           'fas fa-star fa-2x' : 'far fa-star fa-2x'}`}></i>
-                </div>
-                <p id= "detail_content"className="detail-text">Weekday Hours: </p>
+
+                <p id= "detail_content" className="detail-text">Weekday Hours: </p>
                 <ul id="hours" >
 
-                    {place.result && place.result.opening_hours && place.result.opening_hours.weekday_text.map((el) => <li id="hour" className={"detail-text"}>{el}</li> )}
+                    {
+                        place.result && place.result.opening_hours &&
+                        place.result.opening_hours.weekday_text.map((el) =>
+                            <li id="hour" className={"detail-text"}>
+                                {el}
+                            </li>)
+                    }
 
-                    {place.result && !place.result.opening_hours && <div id="hour_unavailable" className={"detail-text"}>Currently Unavailable</div>}
+                    {
+                        place.result && !place.result.opening_hours &&
+                        <div id="hour_unavailable" className={"detail-text"}>
+                            Currently Unavailable
+                        </div>
+                    }
 
                 </ul>
 
