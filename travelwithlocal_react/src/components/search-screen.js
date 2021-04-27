@@ -17,6 +17,10 @@ const SearchScreen = () => {
         setSearchLocation(location)
         findPOIByLocation(location)
         findGuidesByLocation(location)
+        userService.profile()
+            .then((user) => {
+                setUser(user)
+            })
     }, [])
     const findPOIByLocation = (location) => {
         // history.push(location)
@@ -25,11 +29,6 @@ const SearchScreen = () => {
             .then((results) => {
                 setResults(results)
             })
-        userService.profile()
-            .then((user) => {
-                setUser(user)
-            })
-
     }
 
     const findGuidesByLocation = (location) => {
