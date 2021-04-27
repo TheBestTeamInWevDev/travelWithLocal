@@ -136,6 +136,24 @@ const Profile = () => {
                             </ul>
                         </div>
                     </div>
+                    {
+                        currentUser.role === "LOCALGUIDE" &&
+                        <div className="mb-3 row">
+                            <label htmlFor="email"
+                                   className="col-sm-2 col-form-label wbdv-profile-font">
+                                Requested
+                            </label>
+                            <div className="col-sm-10">
+
+                                <ul>
+                                    {currentUser.listOfRequests && currentUser.listOfRequests.map((el) => <li className={"wbdv-profile-input"}>{el.username}</li> )}
+                                    {!currentUser.listOfRequests && <div className={"wbdv-profile-input"}>Currently Unavailable</div>}
+                                </ul>
+                            </div>
+                        </div>
+                    }
+
+
                     {/*<div className="mb-3 row">*/}
                     {/*    <label htmlFor="role">*/}
                     {/*        <i className="left_icon fas fa-smile-wink"></i>*/}

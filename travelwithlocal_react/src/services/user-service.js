@@ -96,8 +96,36 @@ const update = (credentials) => {
 
 }
 
+const deleteFavouritePlace = (poiID) => {
+    console.log("Delete POI: " + poiID)
+    return fetch(`${USER_API}/delete/${poiID}`, {
+        method: "DELETE",
+        credentials: "include",
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+}
+
+const checkFavouritePlace = (poiID) => {
+    console.log("Check POI: " + poiID)
+    return fetch(`${USER_API}/check/${poiID}`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then((response) => {response.json();
+            console.log("checkFavouritePlace response: " + JSON.stringify(response))
+        })
+}
+
 
 export default {
-    register, login, logout, update, profile, findGuidesByLocation, findPublicProfile, requestGuide
+    register, login, logout, update,
+    profile, findGuidesByLocation, findPublicProfile,
+    requestGuide, deleteFavouritePlace,checkFavouritePlace
 
 }

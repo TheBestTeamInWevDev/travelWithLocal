@@ -21,7 +21,27 @@ const DetailsScreen = () => {
         console.log("Details-screen")
         findPlaceByPoiID()
         findLocalsByLocation()
+        userService.checkFavouritePlace(poiID)
+            .then((saved) =>{
+                console.log("Favourite Place saved? " + saved)
+                if (saved === "1"){
+                    setSaved(true)
+                }else{
+                    setSaved(false)
+                }
+            })
     }, [])
+
+    const checkSavedMarket = () =>{
+        userService.checkFavouritePlace(poiID)
+            .then((saved) =>{
+                if (saved === "1"){
+                    setSaved(true)
+                }else{
+                    setSaved(false)
+                }
+            })
+    }
 
     const findPlaceByPoiID = () => {
         console.log("findPlaceByPoiID")
@@ -29,7 +49,6 @@ const DetailsScreen = () => {
             .then((data) => {
                 setPlace(data)
             })
-
     }
 
     const findLocalsByLocation = () => {
@@ -69,7 +88,7 @@ const DetailsScreen = () => {
                             <p className={"detail-back-btn"}>Welcome {userStatus.getName()}</p>
                     </div>
                     <div className="col-1">
-                        <i onClick={() => {SavePOIForTraveler();setSaved(true)}} role={"btn"}
+                        <i onClick={() => {SavePOIForTraveler();checkSavedMarket()}} role={"btn"}
                            className={`detail-back-btn ${saved?
                                'fas fa-star fa-2x' : 'far fa-star fa-2x'}`}></i>
                     </div>
