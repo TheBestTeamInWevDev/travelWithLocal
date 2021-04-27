@@ -97,11 +97,20 @@ const DetailsScreen = () => {
                     {/*<div className="col">*/}
                     {/*        <p className={"detail-back-btn"}>Welcome {userStatus.getName()}</p>*/}
                     {/*</div>*/}
-                    <div className="col-2 fav_icon">
-                        <i onClick={() => {SavePOIForTraveler();setSaved(true)}} role={"btn"}
-                           className={`detail-back-btn ${saved?
-                               'fas fa-star fa-2x' : 'far fa-star fa-2x'}`}></i>
-                    </div>
+
+                    {/*<div className="col-2 fav_icon">*/}
+                    {/*    {console.log("before onClick")}*/}
+                    {/*    <i onClick={() => {*/}
+                    {/*        console.log("in onClick" + saved)*/}
+                    {/*        SavePOIForTraveler();*/}
+                    {/*        setSaved(true)}*/}
+                    {/*    } role={"btn"}*/}
+                    {/*       className={`detail-back-btn ${saved ?*/}
+                    {/*           'fas fa-star fa-2x' : 'far fa-star fa-2x'}`}></i>*/}
+                    {/*</div>*/}
+
+
+
                 {/*</div>*/}
             </div>
             <div className="wbdv-header-top col-sm-6">
@@ -111,7 +120,15 @@ const DetailsScreen = () => {
                     width="550" height="300"
                 />
                 <br/>
-
+                {/*put save star here so that it will work*/}
+                <div className="col-1">
+                    {console.log("before onClick")}
+                    <i onClick={() => {SavePOIForTraveler();
+                        console.log("in onClick" + saved)
+                        setSaved(true)}} role={"btn"}
+                       className={`detail-back-btn ${saved?
+                           'fas fa-star fa-2x' : 'far fa-star fa-2x'}`}></i>
+                </div>
                 <p id= "detail_content"className="detail-text">Weekday Hours: </p>
                 <ul id="hours" >
 
