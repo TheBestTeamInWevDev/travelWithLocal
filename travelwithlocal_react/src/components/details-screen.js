@@ -10,7 +10,7 @@ const proxyurl = "https://blooming-retreat-25143.herokuapp.com/";
 
 
 const DetailsScreen = () => {
-    const [poiInfo, setPoiInfo] = useState({name: '', poiID: '', location: '', imageURL: '', username: ''})
+    const [poiInfo, setPoiInfo] = useState({address: '', poiID: '', location: '', imageURL: '', username: ''})
     const [saved, setSaved] = useState(false)
     const {searchLocation, location, poiID, photoReference} = useParams()
     const history = useHistory()
@@ -25,27 +25,22 @@ const DetailsScreen = () => {
             .then((user) => {
                 setUser(user)
             })
-        userService.checkFavouritePlace(poiID)
-            .then((res) => {
-                console.log("Favourite Place saved? " + res)
-                if (res != null && res !== 0) {
-                    setSaved(true)
-                } else {
-                    setSaved(false)
-                }
-            })
+        checkSavedMarket();
+        console.log("Save Status_useEFFECT: "+saved)
     }, [])
 
-
         const checkSavedMarket = () => {
+            console.log("Save Status_1: "+saved)
             userService.checkFavouritePlace(poiID)
                 .then((res) => {
+                    console.log("checkSavedMarket res: "+res)
                     if (res != null && res !== 0) {
                         setSaved(true)
                     } else {
                         setSaved(false)
                     }
                 })
+            console.log("Save Status_2: "+saved)
         }
         const findPlaceByPoiID = () => {
             console.log("findPlaceByPoiID")
@@ -64,112 +59,133 @@ const DetailsScreen = () => {
 
                 })
         }
-        const SavePOIForTraveler = () => {
+        const SavePOIForTraveler = () =>{
             console.log("Save POI To DB")
             setPoiInfo({
                 location: location,
                 poiID: poiID,
-                address: place.result.formatted_address,
+                address: place.result && place.result.formatted_address,
                 imageURL: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA`,
-                username: user.username
-            })
-            poiService.SavePOIForTraveler(poiInfo)
-                .then((res) => {
-                    checkSavedMarket();
+                username: user.username})
+                poiService.SavePOIForTraveler(poiInfo)
+                    .then((result) => {
+                        console.log("Save Status_3: "+saved)
+                        checkSavedMarket();
+                        console.log("Save Status_4: "+saved)
                 })
-        }
+            }
+                return(
+                <div className="detail-body">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-6">
+                                <Link to="../../../../">
+                                    <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
+                                </Link>
 
-        return (
-            <div className="detail-body">
-                <div className="container">
-                    {/*<div className="row">*/}
-                    <div>
-                        <Link to="../../../">
-                            <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"/>
-                        </Link>
-
-                        <br/>
-                    </div>
-
-                    <div className="d-none d-lg-block">
-                        {
-                            !user.username &&
-                            <Link to="../../../../login">
-                                <button type="button" className="btn btn-secondary float-right">Login</button>
-                            </Link>
-                        }
-                        {
-                            user.username &&
-                            <Link to="../../../../profile">
-                                <button type="button" className="btn btn-secondary float-right">Profile</button>
-                            </Link>
-                        }
-                        <Link>
-                            <button onClick={() => history.goBack()} type="button"
-                                    className="btn btn-light float-right">Back
-                            </button>
-                        </Link>
-                    </div>
-
-                    {/*<div className="col-1">*/}
-                    {/*    <i onClick={() => history.goBack()} role={"btn"}*/}
-                    {/*       className="detail-back-btn fas fa-times fa-2x "></i>*/}
-                    {/*</div>*/}
-                    <div className="col-6 detail-title-location" id="local_name">
-                        <h3>{location}</h3>
-                    </div>
-
-                    {/*</div>*/}
-                </div>
-                <div className="wbdv-header-top col-sm-6">
-
-                    <img id="detail_img"
-                         src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA`}
-                         width="550" height="300"
-                    />
-                    <br/>
-
-                    <p id="detail_content" className="detail-text">Weekday Hours: </p>
-                    <ul id="hours">
-
-                        {place.result && place.result.opening_hours && place.result.opening_hours.weekday_text.map((el) =>
-                            <li id="hour" className={"detail-text"}>{el}</li>)}
-
-                        {place.result && !place.result.opening_hours &&
-                        <div id="hour_unavailable" className={"detail-text"}>Currently Unavailable</div>}
-
-                    </ul>
-
-                    {/*doesnt have a value yet, render before, first time*/}
-                    <p id="unavailable"
-                       className={"detail-text"}>Address: {place.result && place.result.formatted_address}</p>
-                    {
-                        guides.length > 0 &&
-                        <div className="col-4">
-                            <div className="row">
+                                <br/>
                             </div>
-                            <div className="row">
+                            <div className="col-6 mt-2">
                                 {
-                                    guides.map(guide =>
-                                        <GuideCard guide={guide}/>)
+                                    !user.username &&
+                                    <Link to="../../../../login">
+                                        <button type="button" className="btn btn-secondary float-right">Login</button>
+                                    </Link>
                                 }
+                                {
+                                    user.username &&
+                                    <Link to="../../../../profile">
+                                        <button type="button" className="btn btn-secondary float-right">Profile</button>
+                                    </Link>
+                                }
+                                <Link >
+                                    <button onClick={() => history.goBack()} type="button" className="btn btn-light float-right">Back</button>
+                                </Link>
                             </div>
                         </div>
-                    }
-                    <div className="col-2 fav_icon">
-                        <i onClick={() => {
-                            SavePOIForTraveler();
-                        }} role={"btn"}
 
-                           className={`detail-back-btn ${saved ?
-                               'fas fa-star fa-2x' : 'far fa-star fa-2x'}`}></i>
+
+                        <div className="row">
+                            <div className="col-10 col-sm-11 detail-title-location" id="local_name">
+                                <h3>{location}</h3>
+                            </div>
+                            <div className="col-2 col-sm-1 float-right">
+                                <i onClick={() => SavePOIForTraveler()} role={"btn"}
+                                   className={`detail-back-btn ${saved?
+                                       'fas fa-star fa-2x' : 'far fa-star fa-2x'}`}></i>
+                            </div>
+                        </div>
+                        {/*<div className="col-1">*/}
+                        {/*    <i onClick={() => history.goBack()} role={"btn"}*/}
+                        {/*       className="detail-back-btn fas fa-times fa-2x "></i>*/}
+                        {/*</div>*/}
+
+                        {/*<div className="col">*/}
+                        {/*        <p className={"detail-back-btn"}>Welcome {userStatus.getName()}</p>*/}
+                        {/*</div>*/}
+
+                        {/*<div className="col-2 fav_icon">*/}
+                        {/*    {console.log("before onClick")}*/}
+                        {/*    <i onClick={() => {*/}
+                        {/*        console.log("in onClick" + saved)*/}
+                        {/*        SavePOIForTraveler();*/}
+                        {/*        setSaved(true)}*/}
+                        {/*    } role={"btn"}*/}
+                        {/*       className={`detail-back-btn ${saved ?*/}
+                        {/*           'fas fa-star fa-2x' : 'far fa-star fa-2x'}`}></i>*/}
+                        {/*</div>*/}
+                        {/*</div>*/}
+
+                    </div>
+                    <div className="col-sm-6">
+
+                        <img id="detail_img"
+                             src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA`}
+                             width="550" height="300"
+                        />
+                        <br/>
+                        {/*put save star here so that it will work*/}
+
+                        <p id= "detail_content" className="detail-text">Weekday Hours: </p>
+                        <ul id="hours" >
+
+                            {
+                                place.result && place.result.opening_hours &&
+                                place.result.opening_hours.weekday_text.map((el) =>
+                                    <li id="hour" className={"detail-text"}>
+                                        {el}
+                                    </li>)
+                            }
+
+                            {
+                                place.result && !place.result.opening_hours &&
+                                <div id="hour_unavailable" className={"detail-text"}>
+                                    Currently Unavailable
+                                </div>
+                            }
+
+                        </ul>
+
+                        {/*doesnt have a value yet, render before, first time*/}
+                        <p id="unavailable" className={"detail-text"}>Address: {place.result && place.result.formatted_address}</p>
+                        {
+                            guides.length > 0 &&
+                            <div className="col-4">
+                                <div className="row">
+                                </div>
+                                <div className="row">
+                                    {
+                                        guides.map(guide =>
+                                            <GuideCard guide={guide}/> )
+                                    }
+                                </div>
+                            </div>
+                        }
+
                     </div>
 
                 </div>
 
-            </div>
-
-        )
+                )
     }
-
 export default DetailsScreen

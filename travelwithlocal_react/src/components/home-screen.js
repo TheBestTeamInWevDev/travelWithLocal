@@ -1,10 +1,22 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link, Route} from "react-router-dom"
 import "./home-screen-style.css"
-
+import userService from "../services/user-service"
 
 
 const HomeScreen = () => {
+    const [user, setUser] = useState([])
+    const logout = () => {
+        // nav back to home
+        userService.logout()
+            .then()
+    }
+    useEffect(() => {
+        userService.profile()
+            .then((user) => {
+                setUser(user)
+            })
+    }, [])
     return(
 
         <div className="container">
@@ -13,14 +25,35 @@ const HomeScreen = () => {
                     <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
                     <br/>
                 </div>
-                <div className="col-6 mt-2">
-                    <Link to="./login">
-                        <button type="button" className="btn btn-secondary float-right">Login</button>
-                    </Link>
-                    <Link to="./register">
-                        <button type="button" className="btn btn-light float-right">Register</button>
-                    </Link>
-                </div>
+
+                {
+                    !user.username &&
+                    <div className="col-6 mt-2">
+                        <Link to="/login">
+                            <button type="button" className="btn btn-secondary float-right">Login</button>
+                        </Link>
+                        <Link to="/register">
+                            <button type="button" className="btn btn-light float-right">Register</button>
+                        </Link>
+                    </div>
+                 }
+                {
+                    user.username &&
+                    <div className="col-6 mt-2">
+                        <Link to="/search">
+                            <button type="button"
+                                    className="btn btn-secondary float-right">Search
+                            </button>
+                        </Link>
+                        <Link to="/profile">
+                            <button type="button"
+                                    className="btn btn-light float-right">Profile
+                            </button>
+                        </Link>
+                    </div>
+                }
+
+
             </div>
             {/*<div className="d-none d-lg-block">*/}
 
