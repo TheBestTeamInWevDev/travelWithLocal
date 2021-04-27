@@ -32,6 +32,7 @@ const SavePOIForTraveler = (poiInfo) => {
         .then(response => response.json())
 }
 
+
 export default {
     findPOIByLocation,
     findPlaceByPoiID,

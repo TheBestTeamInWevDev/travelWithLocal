@@ -1,29 +1,46 @@
 import React,{useEffect, useState} from 'react'
 import {Link, useHistory, useParams} from 'react-router-dom'
 import poiService from '../services/poi-service'
+import userService from '../services/user-service'
 import "./details-screen-style.css"
 import userStatus from "../components/users/userConstructor";
+import GuideCard from "./guides/guide-card";
 const proxyurl = "https://blooming-retreat-25143.herokuapp.com/";
+
 
 
 const DetailsScreen = () => {
     const [poiInfo, setPoiInfo] = useState({name: '', poiID: '', location: '', imageURL: '', username: ''})
     const [saved, setSaved] = useState(false)
-    const {location, poiID, photoReference} = useParams()
+    const {searchLocation, location, poiID, photoReference} = useParams()
     const history = useHistory()
     const [place, setPlace] = useState({})
+    const [guides, setGuides] = useState([])
 
     useEffect(() => {
+        console.log("Details-screen")
         findPlaceByPoiID()
+        findLocalsByLocation()
     }, [])
 
     const findPlaceByPoiID = () => {
+        console.log("findPlaceByPoiID")
         poiService.findPlaceByPoiID(poiID)
             .then((data) => {
                 setPlace(data)
             })
+
     }
 
+    const findLocalsByLocation = () => {
+        console.log("Search locals in " + searchLocation)
+        userService.findGuidesByLocation(searchLocation)
+            .then((local) => {
+                setGuides(local)
+                console.log("Locals Returned from API "+ JSON.stringify(local))
+
+            })
+    }
     const SavePOIForTraveler = () =>{
         console.log("Save POI To DB")
         setPoiInfo({
@@ -90,19 +107,24 @@ const DetailsScreen = () => {
 
                     {place.result && !place.result.opening_hours && <div id="hour_unavailable" className={"detail-text"}>Currently Unavailable</div>}
 
-                    {/*{place.result && !place.result.opening_hours && <div className={"detail-text"}>Currently Unavailable</div>}*/}
-                    {/*<li className={"detail-text"}>{place.result && place.result.opening_hours.weekday_text.split(',')}</li>*/}
                 </ul>
 
-                {/*<h2 className={"detail-header"}>{location}</h2>*/}
-
-                {/*<p>{JSON.stringify(place.result)}</p>*/}
-                {/*<h1>{photoReference}</h1>*/}
                 {/*doesnt have a value yet, render before, first time*/}
                 <p id="unavailable" className={"detail-text"}>Address: {place.result && place.result.formatted_address}</p>
-                {/*<p>{place.result.photos}</p>*/}
+                {
+                    guides.length > 0 &&
+                    <div className="col-4">
+                        <div className="row">
+                        </div>
+                        <div className="row">
+                            {
+                                guides.map(guide =>
+                                    <GuideCard guide={guide}/> )
+                            }
+                        </div>
+                    </div>
+                }
 
-                {/*<img id="bg_img" src="https://i.ibb.co/PWMSWF8/pexels-miguel-padri-n-255379.jpg" alt="pexels-miguel-padri-n-255379" border="0"/>*/}
             </div>
 
         </div>

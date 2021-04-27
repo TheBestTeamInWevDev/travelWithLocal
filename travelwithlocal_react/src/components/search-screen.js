@@ -37,7 +37,9 @@ const SearchScreen = () => {
         <div className="container">
             <div className="col row wbdv-sticky-top">
                 <div className="d-none d-lg-block">
-                    <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
+                    <Link to="../">
+                        <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
+                    </Link>
                     <br/>
                 </div>
                 <div className="col-6 col-lg-5">
@@ -55,16 +57,38 @@ const SearchScreen = () => {
                     }} className="fas fa-search fa-2x" role="button" ></a>
                     {/*</button>*/}
                 </div>
-                <div className="col-lg-2 d-none d-lg-block">
-                    <p>Welcome {user.getName()}</p>
-                </div>
-                <div className="col-3 col-lg-1 float-right">
-                    <Link to="/profile">
-                        <button type="button" className="btn btn-light float-right">Profile</button>
-                    </Link>
-                </div>
-                {console.log("SearchScreen Current User: " + user.getName())}
 
+                {
+                    user.getUserStatus() === 0 &&
+                    <div className="col-3 col-lg-3">
+                        <Link to="../login">
+                            <button type="button" className="btn btn-secondary float-right">Login
+                            </button>
+                        </Link>
+                        <Link to="../register">
+                            <button type="button" className="btn btn-light float-right">Register</button>
+                        </Link>
+                    </div>
+                }
+
+
+                {
+                    user.getUserStatus() === 1 &&
+                    <div className="col-lg-2 d-none d-lg-block">
+                        <p>Welcome {user.getName()}</p>
+                    </div>
+                }
+                {
+                    user.getUserStatus() === 1 &&
+                    <div className="col-3 col-lg-1 float-right">
+                        <Link to="/profile">
+                            <button type="button"
+                                    className="btn btn-light float-right">Profile
+                            </button>
+                        </Link>
+                    </div>
+                }
+                {console.log("SearchScreen Current User: " + user.getName())}
             </div>
 
             {/*<input value={searchLocation}*/}
@@ -84,13 +108,15 @@ const SearchScreen = () => {
                         {
                             results.results && results.results.map((poi, idx) =>{
                                 return(
+                                    poi.name && poi.reference && poi.photos &&
                                     <li className="list-group-item" key={idx}>
                                         {/*poi.place_id does not work*/}
                                         {/*{JSON.stringify(poi.photos)}*/}
                                         {/*react: if map, give child key!!*/}
-                                        <Link to={`/details/${poi.name}/${poi.reference}/${poi.photos[0].photo_reference}`}>
+                                        <Link to={`/details/${searchLocation}/${poi.name}/${poi.reference}/${poi.photos[0].photo_reference}`}>
                                             <i className={"search-result-text"}>{poi.name}</i>
                                         </Link>
+
                                     </li>
                                 )
                             })
@@ -98,6 +124,33 @@ const SearchScreen = () => {
 
                     </ul>
                 </div>
+                {/*{*/}
+                {/*    guides.length > 0 &&*/}
+                {/*    <div className="col-4">*/}
+                {/*        <div className="row">*/}
+                {/*            <h3>*/}
+                {/*                Recommended Guides*/}
+                {/*            </h3>*/}
+                {/*        </div>*/}
+                {/*        <div className="row">*/}
+                {/*            {*/}
+
+                {/*                results.results && results.results.map((poi, idx) =>{*/}
+                {/*                    return(*/}
+                {/*                        <li className="list-group-item" key={idx}>*/}
+                {/*                            /!*poi.place_id does not work*!/*/}
+                {/*                            /!*{JSON.stringify(poi.photos)}*!/*/}
+                {/*                            /!*react: if map, give child key!!*!/*/}
+                {/*                            <Link to={`/details/${searchLocation}/${poi.name}/${poi.reference}/${poi.photos[0].photo_reference}`}>*/}
+                {/*                                <i className={"search-result-text"}>{poi.name}</i>*/}
+                {/*                            </Link>*/}
+                {/*                        </li>*/}
+                {/*                    )*/}
+                {/*                })*/}
+                {/*            }*/}
+
+                {/*        </ul>*/}
+                {/*    </div>*/}
                 {
                     guides.length > 0 &&
                     <div className="col-4">
@@ -106,12 +159,23 @@ const SearchScreen = () => {
                                 Recommended Guides
                             </h3>
                         </div>
-                        <div className="row">
-                            {
-                                guides.map(guide =>
-                                    <GuideCard guide={guide}/> )
-                            }
-                        </div>
+                        {
+                            user.getUserStatus() === 1 &&
+                            <div className="row">
+                                {
+                                    guides.map(guide =>
+                                        <GuideCard guide={guide}/> )
+                                }
+                            </div>
+                        }
+                        {
+                            user.getUserStatus() === 0 &&
+                            <h6 className="row">
+                                Login to see recommended local guides!
+                            </h6>
+
+                        }
+
                     </div>
                 }
 
@@ -120,5 +184,4 @@ const SearchScreen = () => {
         </div>
     )
 }
-
 export default SearchScreen

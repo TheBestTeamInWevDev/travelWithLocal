@@ -38,6 +38,7 @@ const register = (credentials) => {
 const logout = () => {
     return fetch(`${USER_API}/logout`, {
         method: "POST",
+        credentials: "include",
         headers: {
             'content-type': 'application/json'
         }
@@ -46,6 +47,7 @@ const logout = () => {
 }
 
 const findGuidesByLocation = (location) => {
+    console.log("findGuidesByLocation " + location)
     return fetch(`${USER_API}/findGuides/${location}`, {
         method: "GET",
         headers: {
@@ -65,6 +67,18 @@ const findPublicProfile = (username) => {
         .then(response => response.json())
 }
 
+
+const requestGuide = (userName, guideName) => {
+    console.log("API User:"+ userName + "send requestto "+ guideName)
+    return fetch(`${USER_API}/${userName}/request/${guideName}`, {
+        method: "POST",
+       headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json())}
+
+
 const update = (credentials) => {
     console.log("Update Service: UserName: "+ credentials.username
         + " email: " + credentials.email
@@ -79,8 +93,11 @@ const update = (credentials) => {
         }
     })
         .then(response => response.json())
+
 }
 
+
 export default {
-    register, login, logout, profile, update, findGuidesByLocation, findPublicProfile
+    register, login, logout, update, profile, findGuidesByLocation, findPublicProfile, requestGuide
+
 }
