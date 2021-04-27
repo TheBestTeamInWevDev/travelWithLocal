@@ -82,7 +82,7 @@ const requestGuide = (userName, guideName) => {
 const update = (credentials) => {
     console.log("Update Service: UserName: "+ credentials.username
         + " email: " + credentials.email
-        + " Password: " +credentials.password
+        + " Password: " + credentials.password
         + " role: "+ credentials.role)
     return fetch(`${USER_API}/update`, {
         method: "POST",
