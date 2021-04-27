@@ -34,9 +34,9 @@ const Profile = () => {
         userService.update(credentials)
             .then(() => {
                 // go to the profile
-                userConstructor.setName(credentials.username)
-                userConstructor.setUserStatus(1)
-                userConstructor.setUserType(credentials.role)
+                // userConstructor.setName(credentials.username)
+                // userConstructor.setUserStatus(1)
+                // userConstructor.setUserType(credentials.role)
                 // setCurrentUser(credentials)
                 setCredentials(credentials)
                 history.push("/profile")

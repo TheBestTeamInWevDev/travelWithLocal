@@ -53,7 +53,6 @@ const DetailsScreen = () => {
             .then()
     }
 
-
     return(
         <div className="detail-body">
             <div className="container">
