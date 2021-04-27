@@ -67,7 +67,7 @@ const DetailsScreen = () => {
                     </div>
 
                     <div className="d-none d-lg-block">
-                        <Link to="../../../login">
+                        <Link to="../../../../login">
                             <button type="button" className="btn btn-secondary float-right">Login</button>
                         </Link>
                         <Link >
