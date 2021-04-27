@@ -179,22 +179,14 @@ const SearchScreen = () => {
                                 Recommended Guides
                             </h3>
                         </div>
-                        {
-                            user.username &&
-                            <div className="row">
-                                {
-                                    guides.map(guide =>
-                                        <GuideCard guide={guide}/> )
-                                }
-                            </div>
-                        }
-                        {
-                            !user.username &&
-                            <h6 className="row">
-                                Login to see recommended local guides!
-                            </h6>
 
-                        }
+                        <div className="row">
+                            {
+                                guides.map(guide =>
+                                    <GuideCard guide={guide}/> )
+                            }
+                        </div>
+
 
                     </div>
                 }
