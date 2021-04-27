@@ -3,8 +3,8 @@ import {Link, useParams, useHistory} from "react-router-dom"
 import poiService from "../services/poi-service"
 import userService from "../services/user-service"
 import "./search-screen-style.css"
-import user from "../components/users/userConstructor"
 import GuideCard from "./guides/guide-card";
+import userConstructor from "../components/users/userConstructor";
 
 const SearchScreen = () => {
     const history = useHistory()
@@ -12,6 +12,7 @@ const SearchScreen = () => {
     const [searchLocation, setSearchLocation] = useState(location)
     const [results, setResults] = useState({results:[]})
     const [guides, setGuides] = useState([])
+    const [user, setUser] = useState([])
     useEffect(() => {
         setSearchLocation(location)
         findPOIByLocation(location)
@@ -24,6 +25,11 @@ const SearchScreen = () => {
             .then((results) => {
                 setResults(results)
             })
+        userService.profile()
+            .then((user) => {
+                setUser(user)
+            })
+
     }
 
     const findGuidesByLocation = (location) => {
@@ -31,6 +37,16 @@ const SearchScreen = () => {
             .then((guides) => {
                 setGuides(guides)
             })
+    }
+
+    const logout = () => {
+        userConstructor.setName("")
+        userConstructor.setUserStatus(0)
+        userConstructor.setUserType("")
+        // nav back to home
+        userService.logout()
+            .then()
+        history.push("/")
     }
 
     return(
@@ -49,7 +65,7 @@ const SearchScreen = () => {
                                }}
                                className="form-control-2"/>
                     </div>
-                    <div className="col-3 col-lg-1">
+                    <div className="col-2 col-lg-1">
                         {/*<button onClick={() => {findPOIByLocation(searchLocation)}} className="fas fa-search fa-2x wbdv-nav-plus-logo">*/}
                             <a onClick={() => {
                                 findPOIByLocation(searchLocation)
@@ -59,7 +75,7 @@ const SearchScreen = () => {
                     </div>
 
                     {
-                        user.getUserStatus() === 0 &&
+                        !user.username &&
                             <div className="col-3 col-lg-3">
                                 <Link to="../login">
                                     <button type="button" className="btn btn-secondary float-right">Login
@@ -73,14 +89,19 @@ const SearchScreen = () => {
 
 
                     {
-                        user.getUserStatus() === 1 &&
-                        <div className="col-lg-2 d-none d-lg-block">
-                            <p>Welcome {user.getName()}</p>
+                        user.username &&
+                        <div className="col-lg-1 d-none d-lg-block">
+                            <p>Welcome {user.username}</p>
                         </div>
                     }
                     {
-                        user.getUserStatus() === 1 &&
-                        <div className="col-3 col-lg-1 float-right">
+                        user.username &&
+                        <div className="col-3 col-lg-2 float-right">
+                            <a className="btn btn-danger float-right"
+                               onClick={logout}
+                               role="button">
+                                Logout
+                            </a>
                             <Link to="/profile">
                                 <button type="button"
                                         className="btn btn-light float-right">Profile
@@ -88,7 +109,7 @@ const SearchScreen = () => {
                             </Link>
                         </div>
                     }
-                    {console.log("SearchScreen Current User: " + user.getName())}
+                    {console.log("SearchScreen Current User: " + user.username)}
                 </div>
 
             {/*<input value={searchLocation}*/}
@@ -160,7 +181,7 @@ const SearchScreen = () => {
                             </h3>
                         </div>
                         {
-                            user.getUserStatus() === 1 &&
+                            user.username &&
                             <div className="row">
                                 {
                                     guides.map(guide =>
@@ -169,7 +190,7 @@ const SearchScreen = () => {
                             </div>
                         }
                         {
-                            user.getUserStatus() === 0 &&
+                            !user.username &&
                             <h6 className="row">
                                 Login to see recommended local guides!
                             </h6>
