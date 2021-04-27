@@ -3,8 +3,8 @@ import {Link, useParams, useHistory} from "react-router-dom"
 import poiService from "../services/poi-service"
 import userService from "../services/user-service"
 import "./search-screen-style.css"
-import user from "../components/users/userConstructor"
 import GuideCard from "./guides/guide-card";
+import userConstructor from "../components/users/userConstructor";
 
 const SearchScreen = () => {
     const history = useHistory()
@@ -12,10 +12,15 @@ const SearchScreen = () => {
     const [searchLocation, setSearchLocation] = useState(location)
     const [results, setResults] = useState({results:[]})
     const [guides, setGuides] = useState([])
+    const [user, setUser] = useState([])
     useEffect(() => {
         setSearchLocation(location)
         findPOIByLocation(location)
         findGuidesByLocation(location)
+        userService.profile()
+            .then((user) => {
+                setUser(user)
+            })
     }, [])
     const findPOIByLocation = (location) => {
         // history.push(location)
@@ -33,14 +38,25 @@ const SearchScreen = () => {
             })
     }
 
+    const logout = () => {
+        // userConstructor.setName("")
+        // userConstructor.setUserStatus(0)
+        // userConstructor.setUserType("")
+        // nav back to home
+        userService.logout()
+            .then()
+        history.push("/")
+    }
+
     return(
         <div className="container">
-                <div className="col row wbdv-sticky-top">
-                    <div className="d-none d-lg-block">
-                        <Link to="../">
-                            <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
-                        </Link>
-                        <br/>
+            <div className="col row wbdv-sticky-top">
+                <div className="d-none d-lg-block">
+                    <Link to="../">
+                        <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
+                    </Link>
+                    <br/>
+
                     </div>
                     <div className="col-6 col-lg-5">
                         <input value={searchLocation}
@@ -49,7 +65,7 @@ const SearchScreen = () => {
                                }}
                                className="form-control-2"/>
                     </div>
-                    <div className="col-3 col-lg-1">
+                    <div className="col-2 col-lg-1">
                         {/*<button onClick={() => {findPOIByLocation(searchLocation)}} className="fas fa-search fa-2x wbdv-nav-plus-logo">*/}
                             <a onClick={() => {
                                 findPOIByLocation(searchLocation)
@@ -59,7 +75,7 @@ const SearchScreen = () => {
                     </div>
 
                     {
-                        user.getUserStatus() === 0 &&
+                        !user.username &&
                             <div className="col-3 col-lg-3">
                                 <Link to="../login">
                                     <button type="button" className="btn btn-secondary float-right">Login
@@ -73,14 +89,19 @@ const SearchScreen = () => {
 
 
                     {
-                        user.getUserStatus() === 1 &&
-                        <div className="col-lg-2 d-none d-lg-block">
-                            <p>Welcome {user.getName()}</p>
+                        user.username &&
+                        <div className="col-lg-1 d-none d-lg-block">
+                            <p>Welcome {user.username}</p>
                         </div>
                     }
                     {
-                        user.getUserStatus() === 1 &&
-                        <div className="col-3 col-lg-1 float-right">
+                        user.username &&
+                        <div className="col-3 col-lg-2 float-right">
+                            <a className="btn btn-danger float-right"
+                               onClick={logout}
+                               role="button">
+                                Logout
+                            </a>
                             <Link to="/profile">
                                 <button type="button"
                                         className="btn btn-light float-right">Profile
@@ -88,9 +109,8 @@ const SearchScreen = () => {
                             </Link>
                         </div>
                     }
-                    {console.log("SearchScreen Current User: " + user.getName())}
+                    {console.log("SearchScreen Current User: " + user.username)}
                 </div>
-
             {/*<input value={searchLocation}*/}
             {/*       onChange={(event) => {*/}
             {/*           setSearchLocation(event.target.value)*/}
@@ -113,9 +133,9 @@ const SearchScreen = () => {
                                         {/*poi.place_id does not work*/}
                                         {/*{JSON.stringify(poi.photos)}*/}
                                         {/*react: if map, give child key!!*/}
-                                            <Link to={`/details/${searchLocation}/${poi.name}/${poi.reference}/${poi.photos[0].photo_reference}`}>
-                                                <i className={"search-result-text"}>{poi.name}</i>
-                                            </Link>
+                                        <Link to={`/details/${searchLocation}/${poi.name}/${poi.reference}/${poi.photos[0].photo_reference}`}>
+                                            <i className={"search-result-text"}>{poi.name}</i>
+                                        </Link>
 
                                     </li>
                                 )
@@ -159,22 +179,14 @@ const SearchScreen = () => {
                                 Recommended Guides
                             </h3>
                         </div>
-                        {
-                            user.getUserStatus() === 1 &&
-                            <div className="row">
-                                {
-                                    guides.map(guide =>
-                                        <GuideCard guide={guide}/> )
-                                }
-                            </div>
-                        }
-                        {
-                            user.getUserStatus() === 0 &&
-                            <h6 className="row">
-                                Login to see recommended local guides!
-                            </h6>
 
-                        }
+                        <div className="row">
+                            {
+                                guides.map(guide =>
+                                    <GuideCard guide={guide}/> )
+                            }
+                        </div>
+
 
                     </div>
                 }
