@@ -51,12 +51,13 @@ const SearchScreen = () => {
 
     return(
         <div className="container">
-                <div className="col row wbdv-sticky-top">
-                    <div className="d-none d-lg-block">
-                        <Link to="../">
-                            <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
-                        </Link>
-                        <br/>
+            <div className="col row wbdv-sticky-top">
+                <div className="d-none d-lg-block">
+                    <Link to="../">
+                        <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
+                    </Link>
+                    <br/>
+
                     </div>
                     <div className="col-6 col-lg-5">
                         <input value={searchLocation}
@@ -111,7 +112,6 @@ const SearchScreen = () => {
                     }
                     {console.log("SearchScreen Current User: " + user.username)}
                 </div>
-
             {/*<input value={searchLocation}*/}
             {/*       onChange={(event) => {*/}
             {/*           setSearchLocation(event.target.value)*/}
@@ -134,9 +134,9 @@ const SearchScreen = () => {
                                         {/*poi.place_id does not work*/}
                                         {/*{JSON.stringify(poi.photos)}*/}
                                         {/*react: if map, give child key!!*/}
-                                            <Link to={`/details/${searchLocation}/${poi.name}/${poi.reference}/${poi.photos[0].photo_reference}`}>
-                                                <i className={"search-result-text"}>{poi.name}</i>
-                                            </Link>
+                                        <Link to={`/details/${searchLocation}/${poi.name}/${poi.reference}/${poi.photos[0].photo_reference}`}>
+                                            <i className={"search-result-text"}>{poi.name}</i>
+                                        </Link>
 
                                     </li>
                                 )

@@ -6,24 +6,25 @@ import "./profile-screen-style.css"
 
 const Profile = () => {
     const [credentials, setCredentials] = useState({username: '', password: '', email: '', role: 'TRAVELLER'})
-    const [currentUser, setCurrentUser] = useState({username: '', password: ''})
+    // const [currentUser, setCurrentUser] = useState({username: '', password: ''})
     useEffect(() => {
-        userService.profile()
-            .then((currentUser) => {
-                setCurrentUser(currentUser)
-            })
+        // userService.profile()
+        //     .then((currentUser) => {
+        //         setCurrentUser(currentUser)
+        //     })
         userService.profile()
             .then((credentials) => {
                 setCredentials(credentials)
             })
     }, [])
+
     const history = useHistory()
     const logout = () => {
         userConstructor.setName("")
         userConstructor.setUserStatus(0)
         userConstructor.setUserType("")
         // nav back to home
-        setCurrentUser({username: '', password: ''})
+        setCredentials({username: '', password: ''})
         userService.logout().
         then()
         history.push("/")
@@ -36,6 +37,8 @@ const Profile = () => {
                 userConstructor.setName(credentials.username)
                 userConstructor.setUserStatus(1)
                 userConstructor.setUserType(credentials.role)
+                // setCurrentUser(credentials)
+                setCredentials(credentials)
                 history.push("/profile")
             })
     }
@@ -73,7 +76,7 @@ const Profile = () => {
                                    readOnly
                                    className="form-control wbdv-profile-input"
                                    id="staticEmail"
-                                   value={currentUser.username}/>
+                                   value={credentials.username}/>
                         </div>
                     </div>
 
@@ -88,7 +91,8 @@ const Profile = () => {
                                 onChange={(e) =>
                                 {setCredentials({...credentials, password: e.target.value})}}
                                    value={credentials.password}
-                                    placeholder={currentUser.password}/>
+                                    // placeholder={currentUser.password}
+                            />
                         </div>
                     </div>
 
@@ -99,8 +103,9 @@ const Profile = () => {
                         </label>
                         <div className="col-sm-10">
                             <input type="email"
-                                   onChange={(e) => {setCredentials({...credentials, email: e.target.value})}}
-                                   placeholder={currentUser.email}
+                                   onChange={(e) =>
+                                   {setCredentials({...credentials, email: e.target.value})}}
+                                   // placeholder={currentUser.email}
                                    value={credentials.email}
                                    className="form-control-2"/>
                         </div>
@@ -114,8 +119,8 @@ const Profile = () => {
                         <div className="col-sm-10">
                             <select onChange={(e) =>
                             {setCredentials({...credentials, role: e.target.value})}}
-                                    placeholder={credentials.role}
-                                    value={currentUser.role}
+                                    // placeholder={credentials.role}
+                                    value={credentials.role}
                                     className="form-control wbdv-profile-input">
                                 <option value={"TRAVELLER"}>Traveller</option>
                                 <option value={"LOCALGUIDE"}>Local Guide</option>
@@ -131,8 +136,8 @@ const Profile = () => {
                         <div className="col-sm-10">
 
                             <ul>
-                                {currentUser.favoritePlaces && currentUser.favoritePlaces.map((el) => <li className={"wbdv-profile-input"}>{el.location}</li> )}
-                                {!currentUser.favoritePlaces && <div className={"wbdv-profile-input"}>Currently Unavailable</div>}
+                                {credentials.favoritePlaces && credentials.favoritePlaces.map((el) => <li className={"wbdv-profile-input"}>{el.location}</li> )}
+                                {!credentials.favoritePlaces && <div className={"wbdv-profile-input"}>Currently Unavailable</div>}
                             </ul>
                         </div>
                     </div>
