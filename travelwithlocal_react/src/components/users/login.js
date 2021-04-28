@@ -26,18 +26,24 @@ const Login = () => {
     return (
 
             <div className="container">
-                <div>
-                    <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
-                    <br/>
-                </div>
+                <div className="row">
+                    <div className="col-6">
+                        <div>
+                            <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
+                            <br/>
+                        </div>
+                    </div>
 
-                <div className="d-none d-lg-block">
-                    <Link to="./">
-                        <button type="button" className="btn btn-secondary float-right">Home</button>
-                    </Link>
-                    <Link to="./register">
-                        <button type="button" className="btn btn-light float-right">Register</button>
-                    </Link>
+                    <div className="col-6 mt-2">
+                        <div className="d-none d-lg-block">
+                            <Link to="./">
+                                <button type="button" className="btn btn-secondary float-right">Home</button>
+                            </Link>
+                            <Link to="./register">
+                                <button type="button" className="btn btn-light float-right">Register</button>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
 
 
