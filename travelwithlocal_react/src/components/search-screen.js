@@ -70,7 +70,7 @@ const SearchScreen = () => {
                             <a onClick={() => {
                                 findPOIByLocation(searchLocation)
                                 findGuidesByLocation(searchLocation)
-                            }} className="fas fa-search fa-2x" role="button" ></a>
+                            }} className="fas fa-search fa-2x search_icon" role="button" ></a>
                         {/*</button>*/}
                     </div>
 
@@ -97,7 +97,7 @@ const SearchScreen = () => {
                     {
                         user.username &&
                         <div className="col-3 col-lg-2 float-right">
-                            <a className="btn btn-danger float-right"
+                            <a className="btn btn-secondary float-right"
                                onClick={logout}
                                role="button">
                                 Logout
