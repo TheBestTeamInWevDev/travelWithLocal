@@ -143,8 +143,8 @@ const Profile = () => {
                         </label>
                         <div className="col-sm-10">
 
-                            <ul>
-                                {credentials.favoritePlaces && credentials.favoritePlaces.map((el) => <li className={"wbdv-profile-input"}>{el.location}</li> )}
+                            <ul className="fav_input">
+                                {credentials.favoritePlaces && credentials.favoritePlaces.map((el) => <li className={" wbdv-profile-input"}>{el.location}</li> )}
                                 {!credentials.favoritePlaces && <div className={"wbdv-profile-input"}>Currently Unavailable</div>}
                             </ul>
                         </div>
