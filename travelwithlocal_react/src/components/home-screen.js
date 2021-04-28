@@ -244,10 +244,11 @@ const HomeScreen = () => {
                         <i className="fas fa-heart heart-icon"></i>
                     </h2>
                 </div>
-
+                {/*<p>Login in to see what is in trend</p>*/}
                 <br/>
-                
+
                 <div className="row">
+
                     {
                         images.map((el) => <img id ="top_4_img" className="col-3" width="200" height="250" src={el.imageURL}/>)
                     }
