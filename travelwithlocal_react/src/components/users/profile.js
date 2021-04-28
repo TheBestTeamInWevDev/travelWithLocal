@@ -163,7 +163,7 @@ const Profile = () => {
                             </label>
                             <div className="col-sm-10">
 
-                                <ul>
+                                <ul className="fav_input">
                                     {credentials.listOfRequests && credentials.listOfRequests.map((el) => <li className={"wbdv-profile-input"}>{el.username}</li> )}
                                     {!credentials.listOfRequests && <div className={"wbdv-profile-input"}>Currently Unavailable</div>}
                                 </ul>
