@@ -2,10 +2,13 @@ import React, {useState, useEffect} from 'react'
 import {Link, Route} from "react-router-dom"
 import "./home-screen-style.css"
 import userService from "../services/user-service"
-
+import poiService from"../services/poi-service"
+import GuideCard from "./guides/guide-card";
 
 const HomeScreen = () => {
     const [user, setUser] = useState([])
+    const [images, setImages] = useState([])
+
     const logout = () => {
         // nav back to home
         userService.logout()
@@ -15,6 +18,11 @@ const HomeScreen = () => {
         userService.profile()
             .then((user) => {
                 setUser(user)
+            })
+        poiService.findSortedPoi()
+            .then((results) => {
+                setImages(results)
+                console.log("findSortedPoi returned results" + results)
             })
     }, [])
     return(
@@ -207,6 +215,18 @@ const HomeScreen = () => {
                     <button className="btn btn-secondary">More</button>
                 </Link>
             </div>
+            <h2>Top 4 users' favourite places</h2>
+            <div className={"row"}>
+                {
+                    images.map((el) => <img className="col-3" width="400" height="300" src={el.imageURL}/>)
+                }
+                {
+                    images.map((el) => <p className="col-3" >{el.location}{" #"}{el.length}</p>)
+                }
+            </div>
+
+
+
 
         </div>
     )

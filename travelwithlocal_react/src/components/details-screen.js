@@ -33,7 +33,7 @@ const DetailsScreen = () => {
             console.log("Save Status_1: "+saved)
             userService.checkFavouritePlace(poiID)
                 .then((res) => {
-                    console.log("checkSavedMarket res: "+res)
+                    console.log("ret from checkSavedMarket: "+res)
                     if (res != null && res !== 0) {
                         setSaved(true)
                     } else {
@@ -56,24 +56,36 @@ const DetailsScreen = () => {
                 .then((local) => {
                     setGuides(local)
                     console.log("Locals Returned from API " + JSON.stringify(local))
-
                 })
         }
-        const SavePOIForTraveler = () =>{
-            console.log("Save POI To DB")
-            setPoiInfo({
-                location: location,
-                poiID: poiID,
-                address: place.result && place.result.formatted_address,
-                imageURL: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA`,
-                username: user.username})
+
+
+        const checkPOIForTraveler = () =>{
+            if (!saved){
+                console.log("Save POI To DB")
+                setPoiInfo({
+                    location: location,
+                    poiID: poiID,
+                    address: place.result && place.result.formatted_address,
+                    imageURL: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA`,
+                    username: user.username})
                 poiService.SavePOIForTraveler(poiInfo)
                     .then((result) => {
-                        console.log("Save Status_3: "+saved)
-                        checkSavedMarket();
-                        console.log("Save Status_4: "+saved)
-                })
+                        console.log("ret from save: "+result)
+                    })
+                console.log("Save Status_4: "+saved)
+                checkSavedMarket();
+                console.log("Save Status_5: "+saved)
+            }else{
+                console.log("Save Status_6: "+saved)
+                userService.deleteFavouritePlace(poiID).then(r => {
+                    console.log("ret from delete " + r)
+                });
+                console.log("Save Status_7: "+saved)
+                checkSavedMarket();
+                console.log("Save Status_8: "+saved)
             }
+        }
                 return(
                 <div className="detail-body">
                     <div className="container">
@@ -110,7 +122,7 @@ const DetailsScreen = () => {
                                 <h3>{location}</h3>
                             </div>
                             <div className="col-2 col-sm-1 float-right">
-                                <i onClick={() => SavePOIForTraveler()} role={"btn"}
+                                <i onClick={() => checkPOIForTraveler()} role={"btn"}
                                    className={`detail-back-btn ${saved?
                                        'fas fa-star fa-2x' : 'far fa-star fa-2x'}`}></i>
                             </div>

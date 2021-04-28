@@ -2,7 +2,7 @@ const USER_API = "http://localhost:4000/api/users";
 
 const profile = () => {
     return fetch(`${USER_API}/profile`, {
-        method: "POST",
+        method: "GET",
         credentials: "include"
     }).then(response => response.json())
 }
@@ -99,7 +99,7 @@ const update = (credentials) => {
 const deleteFavouritePlace = (poiID) => {
     console.log("Delete POI: " + poiID)
     return fetch(`${USER_API}/delete/${poiID}`, {
-        method: "DELETE",
+        method: "POST",
         credentials: "include",
         headers: {
             'content-type': 'application/json'
