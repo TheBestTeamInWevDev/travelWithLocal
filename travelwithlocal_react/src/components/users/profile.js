@@ -77,7 +77,7 @@ const Profile = () => {
                         <div className="col-sm-10 ">
                             <input type="text"
                                    readOnly
-                                   className="form-control wbdv-profile-input"
+                                   className="form-control-2 wbdv-profile-input"
                                    id="staticEmail"
                                    value={credentials.username}/>
                         </div>
@@ -90,7 +90,7 @@ const Profile = () => {
                         </label>
                         <div className="col-sm-10">
                             <input
-                                className="form-control wbdv-profile-input"
+                                className="form-control-2 wbdv-profile-input"
                                 onChange={(e) =>
                                 {setCredentials({...credentials, password: e.target.value})}}
                                    value={credentials.password}
@@ -121,7 +121,7 @@ const Profile = () => {
                         <div className="col-sm-10">
                             <input
                                 readOnly
-                                className="form-control wbdv-profile-input"
+                                className="form-control-2 wbdv-profile-input"
                                 value={credentials.role}
                             />
                             {/*<select */}
@@ -254,7 +254,7 @@ const Profile = () => {
                     <div className="mb-3 row">
                         <label className="col-sm-2 col-form-label"></label>
                         <div className="col-sm-10">
-                            <a className="btn btn-block wbdv-btn-update"
+                            <a className="signup_btn btn wbdv-btn-update"
                                onClick={update}
                                role="button">
                                 Update
@@ -266,7 +266,7 @@ const Profile = () => {
                     <div className="mb-3 row">
                         <label className="col-sm-2 col-form-label"></label>
                         <div className="col-sm-10">
-                            <a className="btn btn-danger btn-block"
+                            <a className="cancel_btn btn  btn-block"
                                onClick={logout}
                                role="button">
                                 Logout
