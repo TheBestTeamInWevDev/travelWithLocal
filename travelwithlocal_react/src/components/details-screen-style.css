@@ -47,7 +47,7 @@
     margin: 0;
     color: gray;
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 55%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -83,3 +83,11 @@
     /*-ms-transform: translate(-50%, -50%);*/
     transform: translate(10%, 60%);
 }
+
+#local_name{
+    color: gray;
+    top: 15%;
+    left: 20%;
+    position: absolute;
+}
+
