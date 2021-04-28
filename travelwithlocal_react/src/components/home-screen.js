@@ -150,36 +150,65 @@ const HomeScreen = () => {
 
 
 
-            <div className="d-none d-xl-block">
-                <div className="cla_gal_1">
-                    <Link to = "./search/yellow%20stone">
-                        <img id="gallery_1" className="image" src="https://i.ibb.co/xqM5s6K/IMG-20190609-120959.jpg" width="200" height="200"/>
-                    </Link>
+            {/*<div className="d-none d-xl-block">*/}
+            {/*    <div className="cla_gal_1">*/}
+            {/*        <Link to = "./search/yellow%20stone">*/}
+            {/*            <img id="gallery_1" className="image" src="https://i.ibb.co/xqM5s6K/IMG-20190609-120959.jpg" width="200" height="200"/>*/}
+            {/*        </Link>*/}
 
-                </div>
+            {/*    </div>*/}
 
-                <div className="cla_gal_2">
-                    <Link to = "./search/zoom">
-                        <img id="gallery_2" src="https://i.ibb.co/mC04th6/IMG-20190609-121623.jpg" width="200" height="200"/>
-                    </Link>
-                    {/*<div className="desc">Add a description of the image here</div>*/}
-                </div>
+            {/*    <div className="cla_gal_2">*/}
+            {/*        <Link to = "./search/zoom">*/}
+            {/*            <img id="gallery_2" src="https://i.ibb.co/mC04th6/IMG-20190609-121623.jpg" width="200" height="200"/>*/}
+            {/*        </Link>*/}
+            {/*        /!*<div className="desc">Add a description of the image here</div>*!/*/}
+            {/*    </div>*/}
 
-                <div className="cla_gal_3">
-                    <Link to = "./search/park">
-                        <img id="gallery_3" src="https://i.ibb.co/X3RFgfX/IMG-20190609-124957.jpg" width="200" height="200"/>
-                    </Link>
-                    {/*<div className="desc">Add a description of the image here</div>*/}
-                </div>
+            {/*    <div className="cla_gal_3">*/}
+            {/*        <Link to = "./search/park">*/}
+            {/*            <img id="gallery_3" src="https://i.ibb.co/X3RFgfX/IMG-20190609-124957.jpg" width="200" height="200"/>*/}
+            {/*        </Link>*/}
+            {/*        /!*<div className="desc">Add a description of the image here</div>*!/*/}
+            {/*    </div>*/}
 
-                <div className="cla_gal_4">
-                    <Link to = "./search/lake">
-                        <img id="gallery_4" src="https://i.ibb.co/d7r504F/IMG-8834.jpg"  width="200" height="200" />
-                    </Link>
-                    {/*<div className="desc">Add a description of the image here</div>*/}
-                </div>
+            {/*    <div className="cla_gal_4">*/}
+            {/*        <Link to = "./search/lake">*/}
+            {/*            <img id="gallery_4" src="https://i.ibb.co/d7r504F/IMG-8834.jpg"  width="200" height="200" />*/}
+            {/*        </Link>*/}
+            {/*        /!*<div className="desc">Add a description of the image here</div>*!/*/}
+            {/*    </div>*/}
 
-            </div>
+            {/*</div><div className="d-none d-xl-block">*/}
+            {/*    <div className="cla_gal_1">*/}
+            {/*        <Link to = "./search/yellow%20stone">*/}
+            {/*            <img id="gallery_1" className="image" src="https://i.ibb.co/xqM5s6K/IMG-20190609-120959.jpg" width="200" height="200"/>*/}
+            {/*        </Link>*/}
+
+            {/*    </div>*/}
+
+            {/*    <div className="cla_gal_2">*/}
+            {/*        <Link to = "./search/zoom">*/}
+            {/*            <img id="gallery_2" src="https://i.ibb.co/mC04th6/IMG-20190609-121623.jpg" width="200" height="200"/>*/}
+            {/*        </Link>*/}
+            {/*        /!*<div className="desc">Add a description of the image here</div>*!/*/}
+            {/*    </div>*/}
+
+            {/*    <div className="cla_gal_3">*/}
+            {/*        <Link to = "./search/park">*/}
+            {/*            <img id="gallery_3" src="https://i.ibb.co/X3RFgfX/IMG-20190609-124957.jpg" width="200" height="200"/>*/}
+            {/*        </Link>*/}
+            {/*        /!*<div className="desc">Add a description of the image here</div>*!/*/}
+            {/*    </div>*/}
+
+            {/*    <div className="cla_gal_4">*/}
+            {/*        <Link to = "./search/lake">*/}
+            {/*            <img id="gallery_4" src="https://i.ibb.co/d7r504F/IMG-8834.jpg"  width="200" height="200" />*/}
+            {/*        </Link>*/}
+            {/*        /!*<div className="desc">Add a description of the image here</div>*!/*/}
+            {/*    </div>*/}
+
+            {/*</div>*/}
 
             {/*<div className="cla_gal_5">*/}
             {/*    <a target="_blank" href="img_lights.jpg">*/}
@@ -209,24 +238,31 @@ const HomeScreen = () => {
             {/*    /!*<div className="desc">Add a description of the image here</div>*!/*/}
             {/*</div>*/}
 
+            <div className="d-none d-xl-block cla_gal">
+                <div className="row">
+                    <h2 id="top_4_fav">Top 4 Favourite Places
+                        <i className="fas fa-heart heart-icon"></i>
+                    </h2>
+                </div>
+
+                <br/>
+                
+                <div className="row">
+                    {
+                        images.map((el) => <img id ="top_4_img" className="col-3" width="200" height="250" src={el.imageURL}/>)
+                    }
+
+                    {
+                        images.map((el) => <p id ="top_4_title" className="col-3" >{el.location}{" #"}{el.length}</p>)
+                    }
+                </div>
+            </div>
             <div className="explore d-none d-xl-block">
                 <p>Explore More</p>
                 <Link to="/search">
                     <button className="btn btn-secondary">More</button>
                 </Link>
             </div>
-            <h2>Top 4 users' favourite places</h2>
-            <div className={"row"}>
-                {
-                    images.map((el) => <img className="col-3" width="400" height="300" src={el.imageURL}/>)
-                }
-                {
-                    images.map((el) => <p className="col-3" >{el.location}{" #"}{el.length}</p>)
-                }
-            </div>
-
-
-
 
         </div>
     )
