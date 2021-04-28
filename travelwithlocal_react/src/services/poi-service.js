@@ -32,9 +32,17 @@ const SavePOIForTraveler = (poiInfo) => {
         .then(response => response.json())
 }
 
+const findSortedPoi = () => {
+    return fetch(`${POI_API}/sort`, {
+        method: "GET"
+    }).then(response => response.json())
+}
+
+
 
 export default {
     findPOIByLocation,
     findPlaceByPoiID,
-    SavePOIForTraveler
+    SavePOIForTraveler,
+    findSortedPoi
 }

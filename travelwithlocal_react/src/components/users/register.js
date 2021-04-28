@@ -94,16 +94,18 @@ const Register = () => {
                     </div>
                     {
                         credentials.role === "LOCALGUIDE" &&
-                        <div className="form-group row">
-                            <label htmlFor="username" className="col-sm-2 col-form-label wbdv-username-font">
-                                Location </label>
+                        <div className="mb-3 row">
+                            <label htmlFor="username">
+                                <i className="left_icon fas fa-map-marked"></i>
+                            </label>
                             <div className="col-sm-10">
                                 <input
+                                    type="text"
                                     value={credentials.location}
                                     onChange={(e) => {
                                         setCredentials({...credentials, location: e.target.value})
                                     }}
-                                    className="form-control"
+                                    className="form-control-2"
                                     placeholder="location"/>
                             </div>
                         </div>

@@ -1,10 +1,30 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link, Route} from "react-router-dom"
 import "./home-screen-style.css"
-
-
+import userService from "../services/user-service"
+import poiService from"../services/poi-service"
+import GuideCard from "./guides/guide-card";
 
 const HomeScreen = () => {
+    const [user, setUser] = useState([])
+    const [images, setImages] = useState([])
+
+    const logout = () => {
+        // nav back to home
+        userService.logout()
+            .then()
+    }
+    useEffect(() => {
+        userService.profile()
+            .then((user) => {
+                setUser(user)
+            })
+        poiService.findSortedPoi()
+            .then((results) => {
+                setImages(results)
+                console.log("findSortedPoi returned results" + results)
+            })
+    }, [])
     return(
 
         <div className="container">
@@ -13,14 +33,35 @@ const HomeScreen = () => {
                     <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
                     <br/>
                 </div>
-                <div className="col-6 mt-2">
-                    <Link to="./login">
-                        <button type="button" className="btn btn-secondary float-right">Login</button>
-                    </Link>
-                    <Link to="./register">
-                        <button type="button" className="btn btn-light float-right">Register</button>
-                    </Link>
-                </div>
+
+                {
+                    !user.username &&
+                    <div className="col-6 mt-2">
+                        <Link to="/login">
+                            <button type="button" className="btn btn-secondary float-right">Login</button>
+                        </Link>
+                        <Link to="/register">
+                            <button type="button" className="btn btn-light float-right">Register</button>
+                        </Link>
+                    </div>
+                 }
+                {
+                    user.username &&
+                    <div className="col-6 mt-2">
+                        <Link to="/search">
+                            <button type="button"
+                                    className="btn btn-secondary float-right">Search
+                            </button>
+                        </Link>
+                        <Link to="/profile">
+                            <button type="button"
+                                    className="btn btn-light float-right">Profile
+                            </button>
+                        </Link>
+                    </div>
+                }
+
+
             </div>
             {/*<div className="d-none d-lg-block">*/}
 
@@ -174,6 +215,18 @@ const HomeScreen = () => {
                     <button className="btn btn-secondary">More</button>
                 </Link>
             </div>
+            <h2>Top 4 users' favourite places</h2>
+            <div className={"row"}>
+                {
+                    images.map((el) => <img className="col-3" width="400" height="300" src={el.imageURL}/>)
+                }
+                {
+                    images.map((el) => <p className="col-3" >{el.location}{" #"}{el.length}</p>)
+                }
+            </div>
+
+
+
 
         </div>
     )

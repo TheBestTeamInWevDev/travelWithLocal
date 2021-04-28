@@ -2,7 +2,7 @@ const USER_API = "http://localhost:4000/api/users";
 
 const profile = () => {
     return fetch(`${USER_API}/profile`, {
-        method: "POST",
+        method: "GET",
         credentials: "include"
     }).then(response => response.json())
 }
@@ -96,8 +96,32 @@ const update = (credentials) => {
 
 }
 
+const deleteFavouritePlace = (poiID) => {
+    console.log("Delete POI: " + poiID)
+    return fetch(`${USER_API}/delete/${poiID}`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(response => response.json())
+}
+
+const checkFavouritePlace = (poiID) => {
+    console.log("Check POI: " + poiID)
+    return fetch(`${USER_API}/check/${poiID}`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(response => response.json())
+}
+
 
 export default {
-    register, login, logout, update, profile, findGuidesByLocation, findPublicProfile, requestGuide
+    register, login, logout, update,
+    profile, findGuidesByLocation, findPublicProfile,
+    requestGuide, deleteFavouritePlace,checkFavouritePlace
 
 }

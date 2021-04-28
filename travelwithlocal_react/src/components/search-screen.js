@@ -39,9 +39,9 @@ const SearchScreen = () => {
     }
 
     const logout = () => {
-        userConstructor.setName("")
-        userConstructor.setUserStatus(0)
-        userConstructor.setUserType("")
+        // userConstructor.setName("")
+        // userConstructor.setUserStatus(0)
+        // userConstructor.setUserType("")
         // nav back to home
         userService.logout()
             .then()

@@ -20,9 +20,9 @@ const Profile = () => {
 
     const history = useHistory()
     const logout = () => {
-        userConstructor.setName("")
-        userConstructor.setUserStatus(0)
-        userConstructor.setUserType("")
+        // userConstructor.setName("")
+        // userConstructor.setUserStatus(0)
+        // userConstructor.setUserType("")
         // nav back to home
         setCredentials({username: '', password: ''})
         userService.logout().
@@ -34,12 +34,15 @@ const Profile = () => {
         userService.update(credentials)
             .then(() => {
                 // go to the profile
-                userConstructor.setName(credentials.username)
-                userConstructor.setUserStatus(1)
-                userConstructor.setUserType(credentials.role)
+                // userConstructor.setName(credentials.username)
+                // userConstructor.setUserStatus(1)
+                // userConstructor.setUserType(credentials.role)
                 // setCurrentUser(credentials)
+
                 setCredentials(credentials)
-                history.push("/profile")
+
+                console.log(JSON.stringify(credentials))
+                // history.push("/profile")
             })
     }
 
@@ -146,6 +149,24 @@ const Profile = () => {
                             </ul>
                         </div>
                     </div>
+                    {
+                        credentials.role === "LOCALGUIDE" &&
+                        <div className="mb-3 row">
+                            <label htmlFor="email"
+                                   className="col-sm-2 col-form-label wbdv-profile-font">
+                                Requested
+                            </label>
+                            <div className="col-sm-10">
+
+                                <ul>
+                                    {credentials.listOfRequests && credentials.listOfRequests.map((el) => <li className={"wbdv-profile-input"}>{el.username}</li> )}
+                                    {!credentials.listOfRequests && <div className={"wbdv-profile-input"}>Currently Unavailable</div>}
+                                </ul>
+                            </div>
+                        </div>
+                    }
+
+
                     {/*<div className="mb-3 row">*/}
                     {/*    <label htmlFor="role">*/}
                     {/*        <i className="left_icon fas fa-smile-wink"></i>*/}
