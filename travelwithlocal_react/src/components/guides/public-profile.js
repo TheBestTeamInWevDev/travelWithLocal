@@ -7,6 +7,7 @@ import userConstructor from "../users/userConstructor";
 const PublicProfile = () => {
     const {username} = useParams()
     const [guide, setGuide] = useState({})
+    const [credentials, setCredentials] = useState({})
     useEffect(() => {
         console.log("Find Guide Profile: "+username)
 
@@ -14,16 +15,25 @@ const PublicProfile = () => {
             .then((guideRES) => {
                 setGuide(guideRES)
             })
+        userService.profile()
+            .then((credentials) => {
+                setCredentials(credentials)
+            })
         console.log("Find Guide Profile:"+ JSON.stringify(guide) + guide.username)
     }, [])
 
 
     const request = () => {
-        let username = userConstructor.getName()
+        let username = credentials.username
         let guidename = guide.username
         console.log("User:"+ username + "send request to "+ guidename)
         userService.requestGuide(username, guidename)
-            .then(() => {
+            .then((result) => {
+                if (result === "1" || result === 1){
+                    window.alert("Successfully send the request to local guide" + result)
+                }else{
+                    window.alert("Oops, something is wrong " + result)
+                }
             })
     }
 
@@ -70,16 +80,19 @@ const PublicProfile = () => {
                                value={guide.email}/>
                     </div>
                 </div>
-                <div className="mb-3 row">
-                    <label className="col-sm-2 col-form-label"></label>
-                    <div className="col-sm-10">
-                        <a className="btn btn-primary btn-block"
-                           onClick={request}
-                           role="button">
-                            Request
-                        </a>
+
+                {   credentials.role !== "LOCALGUIDE" &&
+                    <div className="mb-3 row">
+                        <label className="col-sm-2 col-form-label"></label>
+                        <div className="col-sm-10">
+                            <a className="btn btn-primary btn-block"
+                               onClick={request}
+                               role="button">
+                                Request
+                            </a>
+                        </div>
                     </div>
-                </div>
+                }
 
 
             </div>

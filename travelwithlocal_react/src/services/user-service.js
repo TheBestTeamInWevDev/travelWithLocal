@@ -69,14 +69,16 @@ const findPublicProfile = (username) => {
 
 
 const requestGuide = (userName, guideName) => {
-    console.log("API User:"+ userName + "send requestto "+ guideName)
-    return fetch(`${USER_API}/${userName}/request/${guideName}`, {
+    console.log("API User: "+ userName + " send request to "+ guideName)
+    return fetch(`${USER_API}/request/${userName}/${guideName}`, {
         method: "POST",
+        credentials: "include",
        headers: {
             'content-type': 'application/json'
         }
     })
-        .then(response => response.json())}
+        .then(response => response.json())
+}
 
 
 const update = (credentials) => {
@@ -93,7 +95,6 @@ const update = (credentials) => {
         }
     })
         .then(response => response.json())
-
 }
 
 const deleteFavouritePlace = (poiID) => {
