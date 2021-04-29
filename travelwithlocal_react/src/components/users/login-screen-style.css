@@ -56,5 +56,6 @@
     cursor: pointer;
     background: cadetblue;
     border: 1px solid #fbceb5 !important;
-    /*margin-left: 20px;*/
+    color: white;
+    margin-left: 20px;
 }
