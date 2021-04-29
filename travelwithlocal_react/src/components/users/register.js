@@ -44,10 +44,10 @@ const Register = () => {
         <div className="container">
             <div className="row">
                 <div className="col-6">
-
-                    <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
+                    <Link to="./">
+                        <img src="https://i.ibb.co/sJZhzGx/47f15056e63744568e8d6704c3234446.png"  />
+                    </Link>
                     <br/>
-
                 </div>
 
                 <div className="col-6">
