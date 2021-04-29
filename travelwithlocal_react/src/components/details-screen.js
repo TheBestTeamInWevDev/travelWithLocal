@@ -120,7 +120,9 @@ const DetailsScreen = () => {
                         <div className="row">
                             <div className="col-10 col-sm-11 detail-title-location" id="local_name">
                                 <h3>{location}</h3>
+                                <br/>
                             </div>
+
                             <div className="col-2 col-sm-1 float-right">
                                 <i onClick={() => checkPOIForTraveler()} role={"btn"}
                                    className={`detail-back-btn ${saved?
@@ -148,54 +150,54 @@ const DetailsScreen = () => {
                         {/*</div>*/}
                         {/*</div>*/}
 
-                    </div>
-                    <div className="col-sm-6">
+                        <div className="col-sm-6 float-right d-none d-sm-block">
+                            <img id="detail_img"
+                                 src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA`}
+                                 width="550" height="300"/>
+                            <br/>
+                            {/*put save star here so that it will work*/}
+                        </div>
 
-                        <img id="detail_img"
-                             src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyAjUoHi6PrcZGhozeFlcc3475p95MewCkA`}
-                             width="550" height="300"
-                        />
-                        <br/>
-                        {/*put save star here so that it will work*/}
 
-                        <p id= "detail_content" className="detail-text">Weekday Hours: </p>
-                        <ul id="hours" >
+                        <div className="col-sm-6 detail-text">
+                            <p id= "detail_content" >Weekday Hours: </p>
+                            <ul>
+                                {
+                                    place.result && place.result.opening_hours &&
+                                    place.result.opening_hours.weekday_text.map((el) =>
+                                        <li className="d-block d-inlines" id="hour" >
+                                            {el}
+                                        </li>)
+                                }
 
+                                {
+                                    place.result && !place.result.opening_hours &&
+                                    <div id="hour_unavailable">
+                                        Currently Unavailable
+                                    </div>
+                                }
+
+                            </ul>
+
+                            {/*doesnt have a value yet, render before, first time*/}
+                            <p id="address">Address: {place.result && place.result.formatted_address}</p>
                             {
-                                place.result && place.result.opening_hours &&
-                                place.result.opening_hours.weekday_text.map((el) =>
-                                    <li id="hour" className={"detail-text"}>
-                                        {el}
-                                    </li>)
+                                guides.length > 0 &&
+                                <div className="col-4">
+                                    <div className="row">
+                                    </div>
+                                    <div className="row">
+                                        {
+                                            guides.map(guide =>
+                                                <GuideCard guide={guide}/> )
+                                        }
+                                    </div>
+                                </div>
                             }
 
-                            {
-                                place.result && !place.result.opening_hours &&
-                                <div id="hour_unavailable" className={"detail-text"}>
-                                    Currently Unavailable
-                                </div>
-                            }
-
-                        </ul>
-
-                        {/*doesnt have a value yet, render before, first time*/}
-                        <p id="unavailable" className={"detail-text"}>Address: {place.result && place.result.formatted_address}</p>
-                        {
-                            guides.length > 0 &&
-                            <div className="col-4">
-                                <div className="row">
-                                </div>
-                                <div className="row">
-                                    {
-                                        guides.map(guide =>
-                                            <GuideCard guide={guide}/> )
-                                    }
-                                </div>
-                            </div>
-                        }
+                        </div>
 
                     </div>
-
                 </div>
 
                 )
