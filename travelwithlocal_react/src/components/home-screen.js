@@ -242,7 +242,7 @@ const HomeScreen = () => {
                     }
 
                     {
-                        images.map((el) => <p id ="top_4_title" className="col-3" >{el.location}{" #"}{el.length}</p>)
+                        images.map((el) => <p id ="top_4_title" className="col-3 search_content" >{el.location}{" #"}{el.length}</p>)
                     }
                 </div>
             </div>
