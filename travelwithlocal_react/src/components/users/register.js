@@ -8,14 +8,14 @@ import "./register-screen-style.css"
 const Register = () => {
     const [credentials, setCredentials] = useState({username: '', password: '', email: '', role: 'TRAVELLER', location: ''})
     const history = useHistory()
-
+    const [verified, setVerified] = useState(null)
     const register = () => {
         // add alert:
-        const passValue = document.getElementById("password").value;
-        const confpassValue = document.getElementById("verify").value;
-        if(passValue !== confpassValue) {
-            window.alert("Passwords do not match!")
-        } else {
+        // const passValue = document.getElementById("password").value;
+        // const confpassValue = document.getElementById("verify").value;
+        // if(passValue !== confpassValue) {
+        //     window.alert("Passwords do not match!")
+        // } else {
             userService.register(credentials)
                 .then((user) => {
                     console.log(user)
@@ -30,7 +30,7 @@ const Register = () => {
                         // window.location.pathname = "./profile";
                     }
                 })
-        }
+        // }
     }
     // const checkReenter = () => {
     //     // add alert:
@@ -51,7 +51,7 @@ const Register = () => {
                 </div>
 
                 <div className="col-6">
-                    <div className="d-none d-lg-block m-2">
+                    <div className="m-2">
                         <Link to="./">
                             <button type="button" className="btn btn-secondary float-right">Home</button>
                         </Link>
@@ -169,22 +169,43 @@ const Register = () => {
                                    className="form-control-2"
                                    placeholder="verify password"
                                    id="verify"
-                                   // onChange={checkReenter}
+                                   onChange={(e) => {setVerified(e.target.value)}}
                             />
                         </div>
                     </div>
-                    <div className="mb-3 row">
-                        <div className="col-sm-10">
-
-                                <a className="signup_btn btn btn-block"
-                                   onClick={register}
-                                   href="./profile"
-                                >
+                    {
+                        verified !== credentials.password && credentials.password !== '' &&
+                            <div className="ml-4 mb-3 row text-danger">
+                                * Password not matching
+                            </div>
+                    }
+                    {
+                        (verified !== credentials.password || credentials.password === '')&&
+                        <div className="mb-3 row">
+                            <div className="col-sm-10">
+                                <button className="signup_btn btn btn-block"
+                                   disabled>
                                     Sign up
-                                </a>
-
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    }
+
+                    {
+                        (verified === credentials.password && credentials.password !== '') &&
+                        <div className="mb-3 row">
+                            <div className="col-sm-10">
+                                <Link to="./profile">
+                                    <a className="signup_btn btn btn-block"
+                                       onClick={register}>
+                                        Sign up
+                                    </a>
+                                </Link>
+
+                            </div>
+                        </div>
+                    }
+
 
                     <div className="mb-3 row">
                         <div className="col-sm-10">
