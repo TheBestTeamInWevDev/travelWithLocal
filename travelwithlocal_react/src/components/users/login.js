@@ -47,7 +47,7 @@ const Login = () => {
                 </div>
 
 
-                <h3 id="welcome_back">Welcome back! Please login to your account</h3>
+                <h3 className="welcome_back">Welcome back! Please login to your account</h3>
                 <br/>
 
                 <form>
