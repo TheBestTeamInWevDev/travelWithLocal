@@ -7,7 +7,7 @@
 /*    transform: translate(-50%, -50%);*/
 /*}*/
 
-#welcome_back {
+.welcome_back {
     color: gray;
 }
 
@@ -56,5 +56,5 @@
     cursor: pointer;
     background: cadetblue;
     border: 1px solid #fbceb5 !important;
-    margin-left: 20px;
+    /*margin-left: 20px;*/
 }
