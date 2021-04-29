@@ -183,16 +183,22 @@ const DetailsScreen = () => {
                             <p id="address">Address: {place.result && place.result.formatted_address}</p>
                             {
                                 guides.length > 0 &&
-                                <div className="col-4">
-                                    <div className="row">
-                                    </div>
-                                    <div className="row">
-                                        {
-                                            guides.map(guide =>
-                                                <GuideCard guide={guide}/> )
-                                        }
-                                    </div>
-                                </div>
+                                    <>
+                                        <br/>
+                                        <div className="row">
+                                            <p className="detail-title-location">Recommended Guide</p>
+                                        </div>
+
+                                        <div className="col-sm-6">
+                                            <div className="row">
+                                                {
+                                                    guides.map(guide =>
+                                                        <GuideCard guide={guide}/> )
+                                                }
+                                            </div>
+                                        </div>
+
+                                    </>
                             }
 
                         </div>
