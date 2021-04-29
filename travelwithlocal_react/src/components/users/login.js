@@ -35,14 +35,14 @@ const Login = () => {
                     </div>
 
                     <div className="col-6 mt-2">
-                        <div className="d-none d-lg-block">
+
                             <Link to="./">
                                 <button type="button" className="btn btn-secondary float-right">Home</button>
                             </Link>
                             <Link to="./register">
                                 <button type="button" className="btn btn-light float-right">Register</button>
                             </Link>
-                        </div>
+
                     </div>
                 </div>
 
@@ -53,18 +53,6 @@ const Login = () => {
                 <form>
                 <div className="form-group row">
                     <div className="col-sm-6">
-                        {/*<div className="mb-3 row">*/}
-                        {/*    <label htmlFor="role">*/}
-                        {/*        <i className="left_icon fas fa-smile-wink"></i>*/}
-                        {/*    </label>*/}
-                        {/*    <div className="col-sm-10">*/}
-                        {/*        <select id="role" className="form-control-2">*/}
-                        {/*            <option disabled>select your role</option>*/}
-                        {/*            <option>traveler</option>*/}
-                        {/*            <option>local</option>*/}
-                        {/*        </select>*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
 
                         <div className="mb-3 row form-group">
                             <label htmlFor="username">
@@ -122,7 +110,7 @@ const Login = () => {
                             {/*    className="col-sm-2 col-form-label">*/}
                             {/*</label>*/}
                             <div className="col-sm-10">
-                                <a className="float-left" href="#">Forgot Password?</a>
+                                <p className="float-left">Forgot Password?</p>
                                 <a className="float-right" href="./register">Sign Up</a>
                             </div>
                         </div>
