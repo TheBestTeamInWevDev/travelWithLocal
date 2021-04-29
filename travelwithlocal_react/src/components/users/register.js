@@ -8,21 +8,38 @@ import "./register-screen-style.css"
 const Register = () => {
     const [credentials, setCredentials] = useState({username: '', password: '', email: '', role: 'TRAVELLER', location: ''})
     const history = useHistory()
+
     const register = () => {
-        userService.register(credentials)
-            .then((user) => {
-                console.log(user)
-                if(user === 0) {
-                    alert("username already taken")
-                } else {
-                    // go to the profile
-                    userConstructor.setName(credentials.username)
-                    userConstructor.setUserStatus(1)
-                    userConstructor.setUserType(credentials.role)
-                    history.push("/profile")
-                }
-            })
+        // add alert:
+        const passValue = document.getElementById("password").value;
+        const confpassValue = document.getElementById("verify").value;
+        if(passValue !== confpassValue) {
+            window.alert("Passwords do not match!")
+        } else {
+            userService.register(credentials)
+                .then((user) => {
+                    console.log(user)
+                    if(user === 0) {
+                        alert("username already taken")
+                    } else {
+                        // go to the profile
+                        userConstructor.setName(credentials.username)
+                        userConstructor.setUserStatus(1)
+                        userConstructor.setUserType(credentials.role)
+                        history.push("/profile")
+                        // window.location.pathname = "./profile";
+                    }
+                })
+        }
     }
+    // const checkReenter = () => {
+    //     // add alert:
+    //     const passValue = document.getElementById("password").value;
+    //     const confpassValue = document.getElementById("verify").value;
+    //     if(passValue !== confpassValue) {
+    //         window.alert("Passwords do not match!")
+    //     }
+    // }
     return(
         <div className="container">
             <div className="row">
@@ -70,20 +87,20 @@ const Register = () => {
                         </div>
                     </div>
 
-                    <div className="mb-3 row">
-                        <label htmlFor="gender">
-                            <i className="left_icon fas fa-users"></i>
-                        </label>
-                        <div className="col-sm-10">
-                            <select id="gender" className="form-control-2"placeholder="select your gender">
-                                <option disabled>select your gender</option>
-                                <option>male</option>
-                                <option>female</option>
-                                <option>Other</option>
-                                <option>Prefer not to say</option>
-                            </select>
-                        </div>
-                    </div>
+                    {/*<div className="mb-3 row">*/}
+                    {/*    <label htmlFor="gender">*/}
+                    {/*        <i className="left_icon fas fa-users"></i>*/}
+                    {/*    </label>*/}
+                    {/*    <div className="col-sm-10">*/}
+                    {/*        <select id="gender" className="form-control-2"placeholder="select your gender">*/}
+                    {/*            <option disabled>select your gender</option>*/}
+                    {/*            <option>male</option>*/}
+                    {/*            <option>female</option>*/}
+                    {/*            <option>Other</option>*/}
+                    {/*            <option>Prefer not to say</option>*/}
+                    {/*        </select>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
 
                     <div className="mb-3 row">
                         <label htmlFor="username">
@@ -117,13 +134,6 @@ const Register = () => {
                         </div>
                     }
 
-{/*//*/}
-{/*//                     }*/}
-{/*//*/}
-{/*//                     <div className="form-group row">*/}
-{/*//                         <label htmlFor="password" className="col-sm-2 col-form-label wbdv-password-font">*/}
-{/*//                             Password </label>*/}
-{/*//*/}
                     <div className="mb-3 row">
                         <label htmlFor="email" >
                             <i className=" left_icon fas fa-envelope"></i>
@@ -158,26 +168,23 @@ const Register = () => {
                             <input type="password"
                                    className="form-control-2"
                                    placeholder="verify password"
-                                   id="verify"/>
+                                   id="verify"
+                                   // onChange={checkReenter}
+                            />
                         </div>
                     </div>
                     <div className="mb-3 row">
-                        {/*<label*/}
-                        {/*    className="col-sm-2 col-form-label">*/}
-                        {/*</label>*/}
                         <div className="col-sm-10">
                             <a className="signup_btn btn btn-block"
                                onClick={register}
-                               href="./profile">
+                               href="./profile"
+                            >
                                 Sign up
                             </a>
                         </div>
                     </div>
 
                     <div className="mb-3 row">
-                        {/*<label*/}
-                        {/*    className="col-sm-2 col-form-label">*/}
-                        {/*</label>*/}
                         <div className="col-sm-10">
                             <p className="float-left">Already have an account?</p>
                             <a className="float-right"
