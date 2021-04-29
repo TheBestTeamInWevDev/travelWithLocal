@@ -9,11 +9,6 @@ const HomeScreen = () => {
     const [user, setUser] = useState([])
     const [images, setImages] = useState([])
 
-    const logout = () => {
-        // nav back to home
-        userService.logout()
-            .then()
-    }
     useEffect(() => {
         userService.profile()
             .then((user) => {

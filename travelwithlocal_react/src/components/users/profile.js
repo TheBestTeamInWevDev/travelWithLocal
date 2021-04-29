@@ -6,12 +6,7 @@ import "./profile-screen-style.css"
 
 const Profile = () => {
     const [credentials, setCredentials] = useState()
-    // const [currentUser, setCurrentUser] = useState({username: '', password: ''})
     useEffect(() => {
-        // userService.profile()
-        //     .then((currentUser) => {
-        //         setCurrentUser(currentUser)
-        //     })
         userService.profile()
             .then((credentials) => {
                 setCredentials(credentials)

@@ -26,7 +26,7 @@ const Register = () => {
                         userConstructor.setName(credentials.username)
                         userConstructor.setUserStatus(1)
                         userConstructor.setUserType(credentials.role)
-                        history.push("/profile")
+                        history.push("./profile")
                         // window.location.pathname = "./profile";
                     }
                 })
@@ -175,12 +175,14 @@ const Register = () => {
                     </div>
                     <div className="mb-3 row">
                         <div className="col-sm-10">
-                            <a className="signup_btn btn btn-block"
-                               onClick={register}
-                               href="./profile"
-                            >
-                                Sign up
-                            </a>
+
+                                <a className="signup_btn btn btn-block"
+                                   onClick={register}
+                                   href="./profile"
+                                >
+                                    Sign up
+                                </a>
+
                         </div>
                     </div>
 
