@@ -80,13 +80,6 @@ const HomeScreen = () => {
                                 to="/search/">Get Started</button>
                         </Link>
 
-                        {/*<Link to="./search">*/}
-                        {/*    <button*/}
-                        {/*        type="button"*/}
-                        {/*        className="btn btn-secondary d-block d-sm-none float-right"*/}
-                        {/*        id="get_started"*/}
-                        {/*        to="/search/">Explore</button>*/}
-                        {/*</Link>*/}
                     </div>
 
                     <div className="d-none d-xl-block">
